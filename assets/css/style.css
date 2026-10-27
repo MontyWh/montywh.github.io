@@ -1,8 +1,8 @@
 /* ==========================================================================
-   Theme Variables (Dark Default + Light Mode)
+   Theme Variables (Dark)
    ========================================================================== */
-:root,
-[data-theme="dark"] {
+:root {
+  color-scheme: dark;
   --bg-primary: #14171c;
   --bg-elevated: #1c2026;
   --bg-header: rgba(20, 23, 28, 0.88);
@@ -17,22 +17,6 @@
   --card-hover-border: rgba(79, 209, 197, 0.4);
   --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.25);
   --header-offset: 118px;
-}
-
-[data-theme="light"] {
-  --bg-primary: #f8fafc;
-  --bg-elevated: #ffffff;
-  --bg-header: rgba(248, 250, 252, 0.9);
-  --border-subtle: rgba(15, 23, 42, 0.08);
-  --border-control: rgba(15, 23, 42, 0.15);
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
-  --accent-teal: #0d9488;
-  --accent-pill-bg: rgba(13, 148, 136, 0.12);
-  --accent-pill-border: rgba(13, 148, 136, 0.25);
-  --card-hover-border: rgba(13, 148, 136, 0.45);
-  --shadow-sm: 0 4px 16px rgba(15, 23, 42, 0.06);
 }
 
 /* ==========================================================================
@@ -165,39 +149,6 @@ body {
   color: var(--accent-teal);
   background-color: var(--accent-pill-bg);
   border-color: var(--accent-pill-border);
-}
-
-.theme-toggle {
-  flex-shrink: 0;
-  width: 38px;
-  height: 38px;
-  border-radius: 0.55rem;
-  border: 1px solid var(--border-control);
-  background-color: rgba(255, 255, 255, 0.03);
-  color: var(--text-primary);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.1s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.theme-toggle:hover {
-  border-color: var(--accent-teal);
-  background-color: rgba(79, 209, 197, 0.08);
-}
-
-.theme-toggle:active {
-  transform: scale(0.95);
-}
-
-[data-theme="dark"] .icon-moon {
-  display: none;
-}
-
-[data-theme="light"] .icon-sun {
-  display: none;
 }
 
 /* ==========================================================================
@@ -361,6 +312,10 @@ body {
   border-color: var(--accent-teal);
   color: var(--accent-teal);
   background-color: var(--accent-pill-bg);
+}
+
+.profile-btn--icon {
+  padding: 0.4rem 0.6rem;
 }
 
 .profile-btn--primary {
@@ -646,11 +601,6 @@ body {
   .nav-tab {
     padding: 0.4rem 0.78rem;
     font-size: 0.86rem;
-  }
-
-  .theme-toggle {
-    width: 34px;
-    height: 34px;
   }
 
   .app-main {
