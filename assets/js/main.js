@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("theme-toggle");
 
   /* ========================================================================
-     1. Render Portfolio Content & Setup Project Filtering
+     1. Render Portfolio Content from data.js
      ======================================================================== */
   if (typeof portfolioData !== "undefined") {
     // Brand Header & Footer
@@ -24,16 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
       footerNameEl.textContent = portfolioData.profile.name;
     }
 
-    // Function to render projects
-    const renderProjects = (filterCategory = "All") => {
-      const projectsGrid = document.getElementById("projects-grid");
-      if (!projectsGrid || !Array.isArray(portfolioData.projects)) return;
-
-      const filteredProjects = filterCategory === "All"
-        ? portfolioData.projects
-        : portfolioData.projects.filter(p => p.category === filterCategory);
-
-      projectsGrid.innerHTML = filteredProjects
+    // Projects
+    const projectsGrid = document.getElementById("projects-grid");
+    if (projectsGrid && Array.isArray(portfolioData.projects)) {
+      projectsGrid.innerHTML = portfolioData.projects
         .map(
           (proj) => `
           <article class="card">
@@ -50,21 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `
         )
         .join("");
-    };
-
-    // Initial project render
-    renderProjects("All");
-
-    // Project filter pill event listeners
-    const filterPills = document.querySelectorAll(".filter-pill");
-    filterPills.forEach(pill => {
-      pill.addEventListener("click", () => {
-        filterPills.forEach(p => p.classList.remove("active"));
-        pill.classList.add("active");
-        const filterVal = pill.getAttribute("data-filter");
-        renderProjects(filterVal);
-      });
-    });
+    }
 
     // Skills
     const skillsGrid = document.getElementById("skills-grid");

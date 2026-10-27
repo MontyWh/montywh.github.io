@@ -12,32 +12,28 @@ const portfolioData = {
     {
       title: "Audio Engine & DSP Framework",
       description: "High-performance real-time audio processing software built with C++ and JUCE, featuring custom DSP algorithms and low-latency audio routing.",
-      category: "GameAudio",
-      tags: ["C++", "JUCE", "DSP", "Audio"],
+      tags: ["Systems Engineering", "Audio / DSP", "C++"],
       github: "https://github.com/montywh",
       live: "#"
     },
     {
       title: "Interactive 3D Web Environment",
       description: "Immersive browser-based experience leveraging modern web graphics, shaders, and optimized component design.",
-      category: "Web",
-      tags: ["JavaScript", "Three.js", "HTML/CSS", "WebGL"],
+      tags: ["Web Development", "Frontend", "JavaScript"],
       github: "https://github.com/montywh",
       live: "#"
     },
     {
       title: "Secure Network & Threat Analyzer",
       description: "Cybersecurity tool designed for packet inspection, vulnerability scanning, and secure protocol enforcement.",
-      category: "Security",
-      tags: ["Cybersecurity", "Networking", "Python", "Systems"],
+      tags: ["Cyber Security", "Networking", "Python"],
       github: "https://github.com/montywh",
       live: "#"
     },
     {
       title: "Multiplayer Simulation Game",
       description: "A physics-driven simulation built in Unity using C# with networked multiplayer state synchronization.",
-      category: "GameAudio",
-      tags: ["C#", "Unity", "FMOD", "Game Dev"],
+      tags: ["Game Development", "Systems", "C#"],
       github: "https://github.com/montywh",
       live: "#"
     }
@@ -45,20 +41,20 @@ const portfolioData = {
 
   skills: [
     {
-      category: "Software Engineering & Systems",
-      items: ["C++ / C#", "Object-Oriented Design", "Algorithms & Data Structures", "Concurrency & Low-Level Optimization"]
+      category: "Software Development & Systems",
+      items: ["Systems Programming", "Object-Oriented Design", "Algorithms & Data Structures", "Performance Optimization"]
     },
     {
       category: "Web & Frontend Architecture",
-      items: ["JavaScript / TypeScript", "HTML5 & Modern CSS", "Three.js & Graphics", "Responsive UI/UX"]
+      items: ["Modern Web Development", "Interactive Graphics & Shaders", "UI/UX Architecture", "Responsive Design"]
     },
     {
-      category: "Game Development & Audio",
-      items: ["Unity Engine", "JUCE Framework", "Digital Signal Processing (DSP)", "FMOD Middleware"]
+      category: "Game Development & Audio Engineering",
+      items: ["Engine Architecture", "Real-Time Digital Signal Processing (DSP)", "Audio Middleware Integration", "Simulation Design"]
     },
     {
       category: "Cybersecurity & IT Infrastructure",
-      items: ["Network Security & Protocols", "Vulnerability Assessment", "Linux System Administration", "Git & CI/CD Pipelines"]
+      items: ["Network Security & Protocols", "Vulnerability Assessment", "Linux System Administration", "Secure Coding Practices"]
     }
   ],
 
