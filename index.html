@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Monty | Personal Portfolio</title>
+  <title>Monty | Software, IT & Audio Systems Portfolio</title>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
@@ -15,16 +15,17 @@
       <!-- Top Row: Name & Role/Status -->
       <div class="app-header__brand">
         <a href="#profile" class="brand-title" id="brand-name">Monty</a>
-        <span class="brand-subtitle" id="brand-tagline">Software & Security Engineer</span>
+        <span class="brand-subtitle" id="brand-tagline">Software Developer | IT & Systems Engineering</span>
       </div>
 
       <!-- Bottom Row: Permanent Ribbon + Theme Toggle -->
       <div class="app-header__ribbon">
         <nav class="nav-tabs" id="nav-tabs" aria-label="Main Navigation">
-          <a href="#projects" class="nav-tab active" data-target="projects">Projects</a>
-          <a href="#skills" class="nav-tab" data-target="skills">Skills</a>
+          <a href="#profile" class="nav-tab active" data-target="profile">Profile</a>
+          <a href="#projects" class="nav-tab" data-target="projects">Projects</a>
           <a href="#experience" class="nav-tab" data-target="experience">Experience</a>
           <a href="#education" class="nav-tab" data-target="education">Education</a>
+          <a href="#skills" class="nav-tab" data-target="skills">Skills</a>
           <a href="#about" class="nav-tab" data-target="about">About</a>
           <a href="#contact" class="nav-tab" data-target="contact">Contact</a>
         </nav>
@@ -55,84 +56,91 @@
   <!-- Main Web-App Viewport -->
   <main class="app-main">
 
-    <!-- Top Profile / Intro Hero Section -->
-    <section id="profile" class="profile-hero">
+    <!-- 1. Top Profile / Intro Hero Section -->
+    <section id="profile" class="profile-hero app-section">
       <div class="profile-hero__card">
         <div class="profile-hero__header">
           <div class="profile-avatar" id="profile-avatar" aria-hidden="true">M</div>
           <div class="profile-hero__titles">
             <div class="profile-hero__name-row">
               <h1 id="hero-name">Monty</h1>
-              <span class="profile-status" id="hero-status">Available for opportunities</span>
+              <span class="profile-status" id="hero-status">BSc (Hons) Graduate</span>
             </div>
-            <p class="profile-hero__role" id="hero-tagline">Software & Security Engineer</p>
+            <p class="profile-hero__role" id="hero-tagline"></p>
             <p class="profile-hero__location" id="hero-location"></p>
           </div>
         </div>
         <div class="profile-hero__bio" id="hero-bio"></div>
+        <div class="profile-hero__highlights" id="hero-highlights"></div>
         <div class="profile-hero__actions" id="hero-actions"></div>
       </div>
     </section>
     
-    <!-- Projects Section -->
+    <!-- 2. Projects Section (Between Profile and Experience) -->
     <section id="projects" class="app-section">
       <div class="section-header">
-        <h2>Projects</h2>
-        <p>Selected work across software systems, web engineering, and security.</p>
+        <h2>Projects & Technical Builds</h2>
+        <p>Software engineering, interactive systems, web automation, and hardware/DSP implementations.</p>
       </div>
       
       <!-- General Category Filter Pills -->
       <div class="filter-pills" id="project-filters">
         <button class="filter-pill active" data-filter="All">All</button>
         <button class="filter-pill" data-filter="Software & Systems">Software & Systems</button>
-        <button class="filter-pill" data-filter="Web Development">Web Development</button>
-        <button class="filter-pill" data-filter="Game & Audio">Game & Audio</button>
-        <button class="filter-pill" data-filter="Cyber Security">Cyber Security</button>
+        <button class="filter-pill" data-filter="Web & IT Automation">Web & IT Automation</button>
+        <button class="filter-pill" data-filter="Interactive & VR Systems">Interactive & VR Systems</button>
       </div>
 
       <div id="projects-grid" class="card-grid"></div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="app-section">
-      <div class="section-header">
-        <h2>Skills</h2>
-        <p>Core competencies grouped by general IT, software development, and security domains.</p>
-      </div>
-      <div id="skills-grid" class="skills-grid"></div>
-    </section>
-
-    <!-- Experience Section -->
+    <!-- 3. Experience Section (Relevant + Additional Experience) -->
     <section id="experience" class="app-section">
       <div class="section-header">
-        <h2>Experience</h2>
-        <p>Professional timeline and key contributions.</p>
+        <h2>Relevant Experience</h2>
+        <p>IT operations, government digital services, technical troubleshooting, and high-reliability roles.</p>
       </div>
       <div id="experience-list" class="timeline-list"></div>
+
+      <div class="section-header" style="margin-top: 3rem;">
+        <h2>Additional Experience & Leadership</h2>
+        <p>Community infrastructure administration, governance, and high-pressure expedition leadership.</p>
+      </div>
+      <div id="additional-experience-list" class="timeline-list"></div>
     </section>
 
-    <!-- Education Section -->
+    <!-- 4. Education Section -->
     <section id="education" class="app-section">
       <div class="section-header">
         <h2>Education</h2>
-        <p>Academic background and technical training.</p>
+        <p>Academic qualifications in computing, IT, and audio software engineering.</p>
       </div>
       <div id="education-list" class="timeline-list"></div>
     </section>
 
-    <!-- About Section -->
+    <!-- 5. Skills Section -->
+    <section id="skills" class="app-section">
+      <div class="section-header">
+        <h2>Technical Skills & Competencies</h2>
+        <p>Grouped across software development, web & data systems, IT operations, and media technology.</p>
+      </div>
+      <div id="skills-grid" class="skills-grid"></div>
+    </section>
+
+    <!-- 6. About / Qualifications & Interests Section -->
     <section id="about" class="app-section">
       <div class="section-header">
-        <h2>About</h2>
+        <h2>Certifications, Interests & Activities</h2>
+        <p>Safety accreditations, technical hobbies, and outdoor pursuits.</p>
       </div>
       <div id="about-content" class="prose-card"></div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- 7. Contact Section -->
     <section id="contact" class="app-section">
       <div class="section-header">
         <h2>Contact</h2>
-        <p>Let's connect or collaborate.</p>
+        <p>Get in touch regarding software development, IT, or systems engineering roles.</p>
       </div>
       <div id="contact-links" class="contact-grid"></div>
     </section>
@@ -140,7 +148,7 @@
   </main>
 
   <footer class="app-footer">
-    <p>&copy; <span id="footer-year"></span> <span id="footer-name">Monty</span>. Built with a web-app experience.</p>
+    <p>&copy; <span id="footer-year"></span> <span id="footer-name">Monty</span>. Built with a responsive web-app architecture.</p>
   </footer>
 
   <script src="assets/js/data.js"></script>

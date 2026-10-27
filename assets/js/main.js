@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (brandNameEl && profile.name) {
       brandNameEl.textContent = profile.name;
-      document.title = `${profile.name} | Portfolio`;
+      document.title = `${profile.name} | Software, IT & Systems Portfolio`;
     }
     if (brandTaglineEl && profile.tagline) {
       brandTaglineEl.textContent = profile.tagline;
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const heroTaglineEl = document.getElementById("hero-tagline");
     const heroLocationEl = document.getElementById("hero-location");
     const heroBioEl = document.getElementById("hero-bio");
+    const heroHighlightsEl = document.getElementById("hero-highlights");
     const heroActionsEl = document.getElementById("hero-actions");
 
     if (avatarEl && (profile.initials || profile.name)) {
@@ -41,35 +42,40 @@ document.addEventListener("DOMContentLoaded", () => {
     if (heroNameEl && profile.name) {
       heroNameEl.textContent = profile.name;
     }
-    if (heroStatusEl) {
-      if (profile.status) {
-        heroStatusEl.textContent = profile.status;
-      } else {
-        heroStatusEl.style.display = "none";
-      }
+    if (heroStatusEl && profile.status) {
+      heroStatusEl.textContent = profile.status;
     }
     if (heroTaglineEl && profile.tagline) {
       heroTaglineEl.textContent = profile.tagline;
     }
-    if (heroLocationEl) {
-      if (profile.location) {
-        heroLocationEl.textContent = `📍 ${profile.location}`;
-      } else {
-        heroLocationEl.style.display = "none";
-      }
+    if (heroLocationEl && profile.location) {
+      heroLocationEl.textContent = `📍 ${profile.location}`;
     }
-    if (heroBioEl) {
-      const bioParagraphs = Array.isArray(profile.heroBio) && profile.heroBio.length > 0
-        ? profile.heroBio
-        : (profile.about || []);
-      heroBioEl.innerHTML = bioParagraphs.map((p) => `<p>${p}</p>`).join("");
+    if (heroBioEl && Array.isArray(profile.heroBio)) {
+      heroBioEl.innerHTML = profile.heroBio.map((p) => `<p>${p}</p>`).join("");
     }
-    if (heroActionsEl && Array.isArray(portfolioData.contact)) {
-      const primaryBtn = `<a href="#projects" class="profile-btn profile-btn--primary">View Projects ↓</a>`;
-      const contactBtns = portfolioData.contact
+    if (heroHighlightsEl && Array.isArray(profile.highlights)) {
+      heroHighlightsEl.innerHTML = profile.highlights
+        .map(
+          (item) => `
+          <div class="profile-highlight-item">
+            <strong>${item.label}</strong>
+            <span>${item.text}</span>
+          </div>
+        `
+        )
+        .join("");
+    }
+    if (heroActionsEl) {
+      const primaryBtns = `
+        <a href="#projects" class="profile-btn profile-btn--primary">View Technical Projects ↓</a>
+        <a href="#experience" class="profile-btn">Experience ↓</a>
+      `;
+      const externalBtns = (portfolioData.contact || [])
+        .filter((c) => c.url.startsWith("http"))
         .map((c) => `<a href="${c.url}" target="_blank" rel="noopener" class="profile-btn">${c.label} ↗</a>`)
         .join("");
-      heroActionsEl.innerHTML = primaryBtn + contactBtns;
+      heroActionsEl.innerHTML = primaryBtns + externalBtns;
     }
 
     // Projects & Category Filtering
@@ -111,6 +117,35 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    // Helper for Timeline Rendering (Experience, Additional Experience, Education)
+    const renderTimeline = (containerId, items, titleKey, orgKey) => {
+      const container = document.getElementById(containerId);
+      if (!container || !Array.isArray(items)) return;
+
+      container.innerHTML = items
+        .map(
+          (item) => `
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div>
+                <span class="timeline-role">${item[titleKey]}</span>
+                <span class="timeline-org"> · ${item[orgKey]}</span>
+              </div>
+              <span class="timeline-period">${item.period}</span>
+            </div>
+            <ul class="timeline-bullets">
+              ${(item.bullets || []).map((b) => `<li>${b}</li>`).join("")}
+            </ul>
+          </div>
+        `
+        )
+        .join("");
+    };
+
+    renderTimeline("experience-list", portfolioData.experience, "role", "organization");
+    renderTimeline("additional-experience-list", portfolioData.additionalExperience, "role", "organization");
+    renderTimeline("education-list", portfolioData.education, "degree", "institution");
+
     // Skills
     const skillsGrid = document.getElementById("skills-grid");
     if (skillsGrid && Array.isArray(portfolioData.skills)) {
@@ -128,54 +163,23 @@ document.addEventListener("DOMContentLoaded", () => {
         .join("");
     }
 
-    // Experience
-    const experienceList = document.getElementById("experience-list");
-    if (experienceList && Array.isArray(portfolioData.experience)) {
-      experienceList.innerHTML = portfolioData.experience
-        .map(
-          (exp) => `
-          <div class="timeline-item">
-            <div class="timeline-header">
-              <div>
-                <span class="timeline-role">${exp.role}</span>
-                <span class="timeline-org"> · ${exp.organization}</span>
-              </div>
-              <span class="timeline-period">${exp.period}</span>
-            </div>
-            <p class="timeline-desc">${exp.description}</p>
-          </div>
-        `
-        )
-        .join("");
-    }
-
-    // Education
-    const educationList = document.getElementById("education-list");
-    if (educationList && Array.isArray(portfolioData.education)) {
-      educationList.innerHTML = portfolioData.education
-        .map(
-          (edu) => `
-          <div class="timeline-item">
-            <div class="timeline-header">
-              <div>
-                <span class="timeline-role">${edu.degree}</span>
-                <span class="timeline-org"> · ${edu.institution}</span>
-              </div>
-              <span class="timeline-period">${edu.period}</span>
-            </div>
-            <p class="timeline-desc">${edu.description}</p>
-          </div>
-        `
-        )
-        .join("");
-    }
-
-    // About
+    // About (Certifications, Musical Interests, Outdoor Activities)
     const aboutContent = document.getElementById("about-content");
-    if (aboutContent && Array.isArray(profile.about)) {
-      aboutContent.innerHTML = profile.about
-        .map((para) => `<p style="margin-bottom: 0.85rem; color: var(--text-secondary);">${para}</p>`)
-        .join("");
+    if (aboutContent && Array.isArray(profile.aboutBlocks)) {
+      aboutContent.innerHTML = `
+        <div class="about-grid">
+          ${profile.aboutBlocks
+            .map(
+              (block) => `
+              <div class="about-block">
+                <h3>${block.title}</h3>
+                <p>${block.content}</p>
+              </div>
+            `
+            )
+            .join("")}
+        </div>
+      `;
     }
 
     // Contact
@@ -184,9 +188,9 @@ document.addEventListener("DOMContentLoaded", () => {
       contactLinks.innerHTML = portfolioData.contact
         .map(
           (item) => `
-          <a class="contact-card" href="${item.url}" target="_blank" rel="noopener">
+          <a class="contact-card" href="${item.url}" ${item.url.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>
             <span>${item.label}</span>
-            <span style="color: var(--text-muted); font-size: 0.82rem;">${item.value} ↗</span>
+            <span style="color: var(--text-muted); font-size: 0.82rem;">${item.value} ${item.url.startsWith("http") ? "↗" : ""}</span>
           </a>
         `
         )
@@ -239,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const observerOptions = {
     root: null,
-    rootMargin: "-25% 0px -60% 0px",
+    rootMargin: "-20% 0px -65% 0px",
     threshold: 0
   };
 

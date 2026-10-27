@@ -5,7 +5,7 @@
 [data-theme="dark"] {
   --bg-primary: #14171c;
   --bg-elevated: #1c2026;
-  --bg-header: rgba(20, 23, 28, 0.85);
+  --bg-header: rgba(20, 23, 28, 0.88);
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-control: rgba(255, 255, 255, 0.14);
   --text-primary: #f3f4f6;
@@ -22,7 +22,7 @@
 [data-theme="light"] {
   --bg-primary: #f8fafc;
   --bg-elevated: #ffffff;
-  --bg-header: rgba(248, 250, 252, 0.88);
+  --bg-header: rgba(248, 250, 252, 0.9);
   --border-subtle: rgba(15, 23, 42, 0.08);
   --border-control: rgba(15, 23, 42, 0.15);
   --text-primary: #0f172a;
@@ -301,12 +301,36 @@ body {
 
 .profile-hero__bio p {
   color: var(--text-secondary);
-  font-size: 0.96rem;
+  font-size: 0.95rem;
   margin-bottom: 0.75rem;
 }
 
-.profile-hero__bio p:last-child {
-  margin-bottom: 0;
+.profile-hero__highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.profile-highlight-item {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.6rem;
+}
+
+.profile-highlight-item strong {
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 0.15rem;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--accent-teal);
 }
 
 .profile-hero__actions {
@@ -450,7 +474,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .tag {
@@ -468,6 +492,7 @@ body {
   gap: 0.85rem;
   font-size: 0.86rem;
   font-weight: 600;
+  margin-top: 0.75rem;
 }
 
 .card-links a {
@@ -482,7 +507,7 @@ body {
 /* Skills Grid */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1rem;
 }
 
@@ -512,7 +537,7 @@ body {
   justify-content: space-between;
   align-items: baseline;
   gap: 0.5rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.55rem;
 }
 
 .timeline-role {
@@ -532,7 +557,29 @@ body {
   font-weight: 500;
 }
 
-.timeline-desc {
+.timeline-bullets {
+  padding-left: 1.15rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* About / Qualifications Prose */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.about-block h3 {
+  font-size: 1rem;
+  color: var(--accent-teal);
+  margin-bottom: 0.5rem;
+}
+
+.about-block p {
   font-size: 0.92rem;
   color: var(--text-secondary);
 }
