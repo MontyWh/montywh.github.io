@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (brandNameEl && profile.name) {
       brandNameEl.textContent = profile.name;
-      document.title = `${profile.name} | Software, IT & Systems Portfolio`;
+      document.title = `${profile.name} | Portfolio`;
     }
     if (brandTaglineEl && profile.tagline) {
       brandTaglineEl.textContent = profile.tagline;
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (heroActionsEl) {
       const primaryBtns = `
-        <a href="#projects" class="profile-btn profile-btn--primary">View Technical Projects ↓</a>
+        <a href="#projects" class="profile-btn profile-btn--primary">View Projects ↓</a>
         <a href="#experience" class="profile-btn">Experience ↓</a>
       `;
       const externalBtns = (portfolioData.contact || [])
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Helper for Timeline Rendering (Experience, Additional Experience, Education)
+    // Helper for Timeline Rendering
     const renderTimeline = (containerId, items, titleKey, orgKey) => {
       const container = document.getElementById(containerId);
       if (!container || !Array.isArray(items)) return;

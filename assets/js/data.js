@@ -2,106 +2,100 @@ const portfolioData = {
   profile: {
     name: "Monty",
     initials: "M",
-    tagline: "Software Developer | IT Systems & Audio Technology Graduate",
+    tagline: "Software Developer | IT & Systems Engineering",
     location: "Bristol & Bath, UK",
-    status: "BSc (Hons) 2:1 Graduate — UWE Bristol",
+    status: "BSc (Hons) Graduate",
     heroBio: [
-      "Recent graduate in Audio and Music Technology (BSc Hons) at the University of the West of England (UWE Bristol), seeking a technical role in software development, IT systems, or engineering teams with a strong collaborative and training ethic.",
-      "Experienced across C++ (JUCE), C# (Unity), JavaScript (Three.JS), Ruby on Rails, and hardware/microcontroller integration, paired with hands-on Government Digital Service (GDS) internship experience, Amazon AI & work-readiness training, and live IT/AV systems troubleshooting."
+      "Recent graduate in Audio and Music Technology at the University of the West of England (UWE Bristol), seeking a role in an audio team with a strong teamworking and training ethic, to develop and contribute existing skills in audio software development.",
+      "Software development skills cover C++ (JUCE), DSP, Unity/C#, FMOD, and MaxMSP. Web and data skills span JavaScript (Three.JS), HTML/CSS, JSON, Ruby, and Blender. Audio engineering features Pro Tools, Reaper, Logic, Studio One, MuseScore, and Fender Studio."
     ],
     highlights: [
       {
-        label: "Software & DSP Engineering",
-        text: "C++ (JUCE), DSP, Unity/C#, FMOD, MaxMSP, and custom microcontroller hardware control."
+        label: "Software Development",
+        text: "C++ (JUCE), DSP, Unity/C#, FMOD, MaxMSP, JavaScript (Three.JS), HTML/CSS, JSON, Ruby, Blender."
       },
       {
-        label: "Web, Data & IT Systems",
-        text: "JavaScript (Three.JS), HTML/CSS, JSON, Ruby (Ruby on Rails), automated forms processing, and Blender."
+        label: "Audio Engineering & Systems",
+        text: "Pro Tools, Reaper, Logic, Studio One, MuseScore, Fender Studio, Q-Lab, mixing desks, surround formats (5.1.2/7.1.4), and ambisonics."
       },
       {
-        label: "IT Support & Collaboration",
-        text: "Agile workflows, Government Digital Service documentation standards, onsite IT/speaker support, Discord, Zoom, Gather Town, and Microsoft Office."
+        label: "Collaboration & Tools",
+        text: "Agile environments, technical documentation (PDF/presentation), Discord, Zoom, Gather Town, Microsoft Office, and GDS standards."
       },
       {
-        label: "Immersive & Audio Systems",
-        text: "Interactive/spatial audio for VR (Meta Quest 2), Q-Lab, Pro Tools, Reaper, Logic, Studio One, 5.1.2/7.1.4 surround, and ambisonics."
+        label: "Certifications & Safety",
+        text: "BECTU Starting Safely certification (ScreenSkills) and Duke of Edinburgh (Bronze)."
       }
     ],
     aboutBlocks: [
       {
         title: "Certifications & Safety Qualifications",
-        content: "Holds BECTU Starting Safely certification (ScreenSkills) and the Duke of Edinburgh Award (Bronze), applying structured safety compliance and risk management across technical and public environments."
+        content: "BECTU Starting Safely certification (ScreenSkills) and Duke of Edinburgh (Bronze)."
       },
       {
-        title: "Technical & Musical Pursuits",
-        content: "Performs electric guitar (Rockschool Grade 7+), 5-string bass guitar, synthesisers, drum machines, samplers, and jazz piano (Grade 1)."
+        title: "Interests & Musical Activities",
+        content: "Performing electric guitar (Rockschool Grade 7+), 5-string bass guitar, synthesisers, drum machines, samplers, and jazz piano (Grade 1)."
       },
       {
-        title: "Outdoor & Expedition Activities",
-        content: "Active in sailing, canoeing, hiking, and mountaineering, bringing strong resilience and team navigation skills from multi-week expeditions."
+        title: "Outdoor Pursuits",
+        content: "Sailing, canoeing, hiking, and mountaineering."
       }
     ]
   },
 
-  /* ==========================================================================
-     Projects (Extracted directly from your CV's technical builds & roles)
-     ========================================================================== */
   projects: [
     {
-      title: "Bespoke C++ (JUCE) & Three.JS Audio/AV Plugins",
-      description: "Developed custom audio/AV software and plugins using C++ (JUCE), Three.JS, and C#, integrating real-time Digital Signal Processing (DSP) and synthesis algorithms, including a custom 3D virtual gramophone GUI modelled and textured in Blender.",
+      title: "Bespoke Audio/AV Software & Plugins (C++ JUCE)",
+      description: "Developing bespoke audio/AV software and plugins using C++ (JUCE), Three.JS, and C#, integrating DSP and synthesis. Created textures and materials for 3D models in Blender for a virtual gramophone audio plugin GUI.",
       category: "Software & Systems",
       tags: ["C++", "JUCE", "Three.JS", "C#", "DSP", "Blender"],
       github: "https://github.com/montywh"
     },
     {
-      title: "Government Forms Processing Automation & Web Guidance",
-      description: "Produced technical guidance and presentations during an internship at the UK Government Digital Service (GDS) for automating forms processing across UK government departments, alongside self-directed web development in Ruby on Rails.",
+      title: "Immersive VR Digital Audio Workstation",
+      description: "Prototyped an immersive VR Digital Audio Workstation in Unity for a Meta Quest 2, featuring spatial audio playback, haptic feedback, and a 3D timeline interface.",
+      category: "Interactive & VR Systems",
+      tags: ["Unity", "C#", "VR", "Spatial Audio"],
+      github: "https://github.com/montywh"
+    },
+    {
+      title: "Government Forms Processing Automation",
+      description: "Produced clear technical guidance and presentations for automating forms processing across UK government departments during internship at the Government Digital Service (GDS). Self-learning covered webpage creation (Ruby on Rails, etc.) and forms processing.",
       category: "Web & IT Automation",
-      tags: ["Ruby on Rails", "IT Automation", "Technical Documentation", "GDS Standards"],
+      tags: ["Ruby on Rails", "GDS", "IT Automation", "Documentation"],
       github: "https://github.com/montywh"
     },
     {
-      title: "Immersive VR Digital Audio Workstation (Meta Quest 2)",
-      description: "Prototyped an interactive VR Digital Audio Workstation in Unity (C#) for the Meta Quest 2, engineering a 3D timeline interface, haptic feedback control, and spatial audio playback.",
-      category: "Interactive & VR Systems",
-      tags: ["Unity", "C#", "VR Development", "Spatial Audio", "Haptics"],
-      github: "https://github.com/montywh"
-    },
-    {
-      title: "Microcontroller Hardware & MaxMSP Synthesis Suite",
-      description: "Engineered virtual instruments in MaxMSP—including a software synthesiser, sampler, and drum machine—interfaced with custom microcontroller hardware devices for low-latency, real-time parameter control.",
+      title: "MaxMSP Virtual Instruments & Microcontrollers",
+      description: "Built virtual instruments in MaxMSP, including a software synth, sampler, and drum machine, plus custom microcontroller devices for real-time parameter control.",
       category: "Software & Systems",
-      tags: ["Microcontrollers", "MaxMSP", "Hardware Integration", "Real-Time Control"],
+      tags: ["MaxMSP", "Microcontrollers", "Synthesis", "Hardware"],
       github: "https://github.com/montywh"
     },
     {
-      title: "'BobaQuarium' Adaptive Game Systems (Global Game Jam 2025)",
-      description: "Programmed and integrated adaptive audio systems in Unity/C# and FMOD for the game 'BobaQuarium' at UWE Bristol, applying DSP code for dynamic real-time gameplay response under rapid agile iteration cycles.",
+      title: "'BobaQuarium' Adaptive Soundtrack (Global Game Jam 2025)",
+      description: "Music composition creating original scores and adaptive themes using Logic, Studio One, and MuseScore. Audio implementation focused on programming and implementing the adaptive soundtrack in Unity/C# and FMOD, applying DSP code for fluid gameplay response.",
       category: "Interactive & VR Systems",
-      tags: ["Unity", "C#", "FMOD", "DSP", "Agile Development"],
+      tags: ["Unity", "C#", "FMOD", "DSP", "Logic"],
       github: "https://github.com/montywh"
     },
     {
-      title: "Multi-Channel Surround & Post-Production System Redesign",
-      description: "Engineered a full technical soundscape redesign of a Chernobyl scene utilizing surround sound formats (5.1.2/7.1.4), precision dialogue editing, and foley architecture—achieving a 2:1 grade.",
+      title: "Surround Sound Chernobyl Scene Redesign",
+      description: "Designed soundscapes for film and games, including a full redesign of a Chernobyl scene using surround sound, dialogue editing, and foley; achieved a 2:1 grade.",
       category: "Interactive & VR Systems",
-      tags: ["Surround Systems", "Pro Tools", "Reaper", "Signal Routing"],
+      tags: ["Surround Sound", "Pro Tools", "Reaper", "Post-Production"],
       github: "https://github.com/montywh"
     }
   ],
 
-  /* ==========================================================================
-     Relevant Experience (Complete & Accurate from CV)
-     ========================================================================== */
   experience: [
     {
       role: "Student | Step-Up Work Experience",
       organization: "Amazon, UK",
       period: "June 2026",
       bullets: [
-        "Gained practical work-readiness through ten CPD-accredited modules and applied them in AI labs, technical team challenges, and structured mentor shadowing across Amazon’s fast-paced operational environment.",
-        "Developed capabilities to strengthen technical innovation, inspire future talent, and widen access to digital skills."
+        "Gained practical work-readiness through ten CPD-accredited modules and applied them in AI labs, team challenges, and structured mentor shadowing across Amazon’s fast-paced environment.",
+        "Prepared to bring fresh perspective, inspire future talent, strengthen innovation, and widen access to digital skills."
       ]
     },
     {
@@ -109,17 +103,17 @@ const portfolioData = {
       organization: "Lansdown Cricket Club, Bath, UK",
       period: "March 2026 — Present",
       bullets: [
-        "Cultivated a strong community atmosphere by providing personalised service to around 50 club members and visitors daily while efficiently managing high-volume orders.",
-        "Maintained operational efficiency and site standards by managing inventory, table service, and public areas."
+        "Customer service work cultivated a strong community atmosphere by providing personalised service to around 50 club members and visitors daily, building rapport by learning names and preferences while efficiently managing high-volume drink orders.",
+        "Maintained operational efficiency and cleanliness by managing snack and beverage inventory, providing table service, and restocking and cleaning public areas."
       ]
     },
     {
       role: "Volunteer | Social Committee Member",
-      organization: "CircleUp, Bath, UK",
+      organization: "CircleUp, UK",
       period: "January 2026 — Present",
       bullets: [
-        "Acted as community lead and mascot for the local Bath community, converting digital subscribers into active, real-world member networks.",
-        "Co-hosted Friday night socials, moderated member chats, and ensured immediate comfort and safety for new or solo attendees."
+        "Mascot for the local Bath community for CircleUp, creating the high-energy, inclusive environments necessary to convert digital subscribers into active, real-world communities.",
+        "Co-host Friday night pub socials, interact in member chats, and actively break the ice for new or solo attendees to ensure immediate comfort and safety."
       ]
     },
     {
@@ -127,28 +121,31 @@ const portfolioData = {
       organization: "Boom Battle Bar, Bath, UK",
       period: "November 2025 — March 2026",
       bullets: [
-        "Operated competitive social gaming systems (including AR darts and shuffleboard) and delivered hospitality for 10–70 guests per shift across 3 to 10 games per night.",
-        "Entrusted with high-demand Saturday and late-night closing shifts after demonstrating consistent operational reliability."
+        "Activity hosting covered running competitive social games such as shuffleboard and AR darts and delivering hospitality for 10-70 guests per shift.",
+        "Customer service extended to supporting food running, table service, and venue tidiness during late-night closes.",
+        "Hospitality responsibilities spanned welcoming 10-70 customers in the venue at a time and operating 3 to 10 games per night (excluding axe throwing).",
+        "Took on high-demand Saturday and late-night closing shifts after building trust through reliable weekday performance."
       ]
     },
     {
-      role: "Volunteer | Onsite IT & Audio Support",
-      organization: "Audio Developer Conference, Bristol, UK",
+      role: "Volunteer | Audio Developer Conference",
+      organization: "Bristol, UK",
       period: "November 2024 & November 2025",
       bullets: [
-        "Provided onsite IT and audio support for conference speakers, including hardware setup, livestream monitoring, and troubleshooting across Discord, Zoom, and Gather Town.",
-        "Facilitated logistics for over 2,000 guests and speakers, overseeing cloakroom capacity reorganization, pre-sorting credentials/lanyards, and safely transporting technical equipment under tight schedules.",
-        "Served as a primary point of contact at onsite information hubs, directing attendees and resolving real-time queries."
+        "Event preparation facilitated seamless event logistics by overseeing a high-volume cloakroom and pre-sorting lanyards for over 2,000 guests and speakers.",
+        "Coordinated safe transport of audio equipment between rooms under tight schedules and reorganised cloakroom storage to restore safe capacity.",
+        "Provided onsite audio and IT support for speakers, including hardware setup, livestream monitoring, and help with Discord, Zoom, and Gather Town.",
+        "Hospitality responsibilities centred on acting as a primary point of contact for attendees, directing them to sessions and co-monitoring onsite information hubs."
       ]
     },
     {
       role: "Intern",
-      organization: "Government Digital Service (GDS), The Whitechapel Building, UK",
+      organization: "Government Digital Service; The Whitechapel Building, UK",
       period: "June 2025 — August 2025",
       bullets: [
         "Produced clear technical guidance and presentations for automating forms processing across UK government departments.",
-        "Collaborated with cross-functional agile teams to ensure technical documentation complied with strict government digital standards and user needs.",
-        "Completed self-directed development in webpage creation (Ruby on Rails) and automated data/forms processing workflows."
+        "Worked with cross-functional teams to ensure technical documentation met government standards and user needs.",
+        "Self-learning covered webpage creation (Ruby on Rails, etc.) and forms processing."
       ]
     },
     {
@@ -156,17 +153,18 @@ const portfolioData = {
       organization: "Great Gatsby Play; Revolution, Bristol, UK",
       period: "May 2025",
       bullets: [
-        "Operated Q-Lab software for SFX and video cueing and managed live audio hardware for an audience of approximately 80 attendees.",
-        "Diagnosed and resolved technical delays and hardware failures prior to showtime to ensure uninterrupted system reliability."
+        "Q-Lab and SFX operation covered running SFX and video cueing and handling audio equipment for a live production attended by around 80 audience members.",
+        "Technical support focused on diagnosing and resolving technical delays and equipment failures prior to the show to deliver a smooth audio performance."
       ]
     },
     {
-      role: "Sound Designer & Audio Programmer",
+      role: "Sound Designer",
       organization: "Global Game Jam 2025; UWE Bristol, UK",
       period: "January 2025 — February 2025",
       bullets: [
-        "Programmed and implemented an adaptive game soundtrack in Unity/C# and FMOD for the game ‘BobaQuarium’, applying custom DSP code for fluid gameplay response.",
-        "Composed original scores using Logic, Studio One, and MuseScore and managed recording, mixing, and synthesis under rapid development cycles."
+        "Music composition centred on creating original scores and adaptive themes using Logic, Studio One, and MuseScore for the game ‘BobaQuarium’.",
+        "Audio implementation focused on programming and implementing the adaptive soundtrack in Unity/C# and FMOD, applying DSP code for fluid gameplay response.",
+        "Sound design and post-production covered managing audio recording, mixing, and synthesis across a full game soundtrack under complex development cycles."
       ]
     },
     {
@@ -174,8 +172,10 @@ const portfolioData = {
       organization: "Camp America, USA",
       period: "June 2024 — August 2024",
       bullets: [
-        "Executed live technical incident response when guitar leads and XLR lines failed mid-performance, rapidly isolating faults and restoring audio to prevent show disruption.",
-        "Coordinated 24/6 safeguarding and cabin care for groups of 8 to 12 campers alongside technical theatre operations and one-to-one guitar coaching across a nine-week contract."
+        "24/6 cabin care required coordinating early-morning, lunchbreak and evening youth cabin care for groups of 8 to 12 campers, alongside technical theatre operations.",
+        "Combined theatre sound work with one-to-one guitar coaching, supporting performances while maintaining a safe and positive environment for campers.",
+        "Problem solving resolved live technical failures when guitar leads and XLRs failed mid-performance, restoring audio and preventing show disruption.",
+        "Physical preparation covered setting up and cleaning camp facilities prior to opening and completing a nine-week contract supporting day-to-day operations."
       ]
     },
     {
@@ -183,8 +183,9 @@ const portfolioData = {
       organization: "Lime Hospitality, Bath, UK",
       period: "June 2021 — May 2024",
       bullets: [
-        "Maintained pace and strict operational standards across high-profile venues including Bath Rugby, Bailbrook Hotel, and Bath & Chepstow Racecourses for banquets of 20 to 150 guests.",
-        "Supported high-volume service for up to 500 customers daily under strict compliance and hygiene standards at Bath Spa University’s Refectory."
+        "Multi-venue experience ranged across high-profile venues including Bath Rugby, Bailbrook Hotel, and Bath & Chepstow Racecourses, maintaining pace and service standards during peak demand.",
+        "Customer demand ranged from dining service to weddings and banquets for 20 to 150 guests.",
+        "Maintained service for up to 500 customers daily under strict hygiene standards at Bath Spa University’s Refectory."
       ]
     },
     {
@@ -192,7 +193,9 @@ const portfolioData = {
       organization: "Pizza Express, UK",
       period: "August 2021 — December 2022",
       bullets: [
-        "Provided multi-branch operational support across high-volume shifts as Food Runner and Kitchen Porter, maintaining service flow and sanitation compliance."
+        "Multi-branch commitment meant handling high-volume service across branches as Food Runner and Kitchen Porter.",
+        "Provisions and cleanliness covered operating the potwash area, dishwashing, deep-cleaning, and restocking ingredients.",
+        "Customer service ensured food reached tables promptly to maintain a steady, high-standard flow of service."
       ]
     },
     {
@@ -200,88 +203,87 @@ const portfolioData = {
       organization: "Sainsbury's PLC, UK",
       period: "December 2021 — May 2022",
       bullets: [
-        "Managed inventory rotation, date-code compliance auditing, shelf replenishment, and point-of-sale checkout systems during peak trading periods."
+        "Constant supply was maintained by handling stock rotation through code-checking product dates, replenishing shelves, and upholding store standards.",
+        "Multi-discipline support extended to helping customers at checkouts and maintaining a professional and efficient point-of-sale experience during busy periods."
       ]
     }
   ],
 
-  /* ==========================================================================
-     Additional Experience (Complete & Accurate from CV)
-     ========================================================================== */
   additionalExperience: [
     {
-      role: "Society Founder & Former Committee Member",
-      organization: "Society of Musicians; UWE Bristol, UK",
+      role: "Society Founder & Former-Committee Member",
+      organization: "Society of Musicians; University of the West of England, UK",
       period: "October 2022 — August 2025",
       bullets: [
-        "Founded and presided over the society, establishing a committee governance structure and configuring a Discord communication architecture that scaled 100 sign-ups into an active core community.",
-        "Managed scheduling for a continuous calendar of socials, professional gigs, and open-mic events while leading collaborative sessions."
+        "Founded and presided over the society to unite the local music community.",
+        "Led collaborative rock jams as guitarist and bassist, helping grow 100 sign-ups into an active core member base.",
+        "Set up a committee structure and Discord communication system to support the society’s long-term growth.",
+        "Scheduling focused on managing a consistent calendar of socials, professional gigs, and open-mic events."
       ]
     },
     {
-      role: "Expedition Team Leader & Volunteer",
-      organization: "Raleigh International, Costa Rica",
+      role: "Costa Rica Volunteer",
+      organization: "Raleigh Costa Rica",
       period: "July 2022 — August 2022",
       bullets: [
-        "Led a team through a 17-day mountain trek, conducting daily route planning, task delegation, and operational safety briefings in high-pressure environments.",
-        "Demonstrated adaptive problem-solving by navigating with outdated maps and dynamically recalculating routes when terrain features were missing or overgrown.",
-        "Combined classroom construction for a rural indigenous school with delivering English instruction, earning five peer award nominations including Best Team Player."
+        "Language instruction combined constructing a school classroom for a rural indigenous school with providing English classes and activities.",
+        "Trek preparation covered daily planning, task delegation, and safety briefings for a small team of peers in high-pressure environments.",
+        "Led a team through a 17-day mountain trek, using clear communication and adaptive problem-solving in challenging conditions.",
+        "Navigated with outdated maps and adjusted routes when terrain features were missing or overgrown.",
+        "Interpersonal skill awards resulted in five award nominations, including Best Team Player and Most Positive Team Person."
       ]
     }
   ],
 
-  /* ==========================================================================
-     Education (Complete & Accurate from CV)
-     ========================================================================== */
   education: [
     {
-      degree: "BSc (Hons) Audio and Music Technology [J932] (Achieved 2:1 in Major Modules)",
+      degree: "BSc (Hons) Audio and Music Technology [J932]",
       institution: "University of the West of England (UWE Bristol), UK",
       period: "September 2022 — August 2025",
       bullets: [
-        "Relevant Coursework: Advanced Technologies, Audio for Games, Audio Post-Production, and Architectural Acoustics.",
-        "Software & Plugin Engineering: Developed bespoke audio/AV software and plugins using C++ (JUCE), Three.JS, and C#, integrating DSP and synthesis.",
-        "VR & Spatial Systems: Prototyped an immersive VR Digital Audio Workstation in Unity for Meta Quest 2 with spatial audio playback, haptic feedback, and a 3D timeline interface.",
-        "Hardware & Embedded Control: Built virtual instruments in MaxMSP (synth, sampler, drum machine) paired with custom microcontroller devices for real-time parameter control.",
-        "3D UI & Asset Pipeline: Created textures and materials for 3D models in Blender for a virtual gramophone audio plugin GUI.",
-        "Industry Systems: Hands-on proficiency with Unity, FMOD, MaxMSP, Pro Tools, Reaper, Logic, MuseScore, and Fender Studio."
+        "Relevant coursework covered Audio Post-Production, Audio for Games, Architectural Acoustics and Advanced Technologies.",
+        "Key achievements featured developing bespoke audio/AV software and plugins using C++ (JUCE), Three.JS, and C#, integrating DSP and synthesis.",
+        "Audio software experience covered hands-on use of industry technologies such as Pro Tools, Reaper, Unity, FMOD, and MaxMSP.",
+        "UI design work focused on creating textures and materials for 3D models in Blender for a virtual gramophone audio plugin GUI.",
+        "Designed soundscapes for film and games, including a full redesign of a Chernobyl scene using surround sound, dialogue editing, and foley; achieved a 2:1 grade.",
+        "Built virtual instruments in MaxMSP, including a software synth, sampler, and drum machine, plus custom microcontroller devices for real-time parameter control.",
+        "Used VR development and spatial audio techniques to create fully immersive experiences, blending music composition with SFX and atmospheric layers.",
+        "Musical composition drew on advanced music theory and proficiency in guitar, bass, and synthesisers to compose original scores using Logic, MuseScore, and Fender Studio.",
+        "Prototyped an immersive VR Digital Audio Workstation in Unity for a Meta Quest 2, with spatial audio playback, haptic feedback, and a 3D timeline interface."
       ]
     },
     {
-      degree: "BTEC (Level 3) IT, A-Level Music Technology & BTEC (Level 3) Music Performing",
-      institution: "St Brendan’s Sixth Form College, Bristol, UK",
+      degree: "BTEC (Level 3) Music Performing & A-Level Music Technology & BTEC (Level 3) IT",
+      institution: "St Brendan’s Sixth Form College | Bristol, UK",
       period: "September 2019 — July 2021",
       bullets: [
-        "Completed formal Level 3 qualifications in Information Technology (IT) alongside A-Level Music Technology and BTEC Music Performing."
+        "Completed BTEC Level 3 Music Performing, A-Level Music Technology, and BTEC Level 3 IT."
       ]
     }
   ],
 
-  /* ==========================================================================
-     Skills (Grouped into General IT, Software Dev & Systems Categories)
-     ========================================================================== */
   skills: [
     {
       category: "Software Development & Systems",
-      items: ["C++ (JUCE Framework)", "C# (Unity Engine)", "Digital Signal Processing (DSP)", "FMOD Middleware", "MaxMSP", "Microcontroller Hardware Integration"]
+      items: ["C++ (JUCE)", "DSP", "Unity / C#", "FMOD", "MaxMSP"]
     },
     {
       category: "Web, Data & IT Automation",
-      items: ["JavaScript (Three.JS)", "HTML5 & CSS3", "JSON Data Structures", "Ruby & Ruby on Rails", "Automated Forms Processing", "Blender (3D UI/UX Assets)"]
+      items: ["JavaScript (Three.JS)", "HTML / CSS", "JSON", "Ruby", "Blender"]
     },
     {
-      category: "IT Support, Governance & Collaboration",
-      items: ["Agile Development Environments", "Technical Documentation (GDS Standards)", "Live IT & Streaming Support", "Discord / Zoom / Gather Town Admin", "Microsoft Office Suite", "BECTU Safety Compliance"]
+      category: "Audio Engineering & Hardware",
+      items: ["Pro Tools", "Reaper", "Logic", "Studio One", "MuseScore", "Fender Studio", "Q-Lab", "Surround / Ambisonics"]
     },
     {
-      category: "Audio, VR & Media Systems",
-      items: ["VR Development (Meta Quest 2)", "Spatial Audio & Ambisonics", "Q-Lab Cueing & Live Diagnostics", "Pro Tools / Reaper / Logic / Studio One", "5.1.2 & 7.1.4 Surround Systems"]
+      category: "Collaboration & Operations",
+      items: ["Agile Environments", "Technical Documentation", "Discord / Zoom / Gather Town", "Microsoft Office", "BECTU Starting Safely", "Duke of Edinburgh (Bronze)"]
     }
   ],
 
   contact: [
     { label: "GitHub", url: "https://github.com/montywh", value: "@montywh" },
-    { label: "LinkedIn", url: "https://linkedin.com", value: "Connect" },
-    { label: "Location", url: "#profile", value: "Bristol & Bath, UK" }
+    { label: "Location", url: "#profile", value: "Bristol & Bath, UK" },
+    { label: "Email", url: "mailto:hello@example.com", value: "Get in Touch" }
   ]
 };
