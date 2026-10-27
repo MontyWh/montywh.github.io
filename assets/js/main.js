@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("theme-toggle");
 
   /* ========================================================================
-     1. Render Portfolio Content from data.js
+     1. Render Portfolio Content & Setup Project Filtering
      ======================================================================== */
   if (typeof portfolioData !== "undefined") {
     // Brand Header & Footer
@@ -24,10 +24,16 @@ document.addEventListener("DOMContentLoaded", () => {
       footerNameEl.textContent = portfolioData.profile.name;
     }
 
-    // Projects
-    const projectsGrid = document.getElementById("projects-grid");
-    if (projectsGrid && Array.isArray(portfolioData.projects)) {
-      projectsGrid.innerHTML = portfolioData.projects
+    // Function to render projects
+    const renderProjects = (filterCategory = "All") => {
+      const projectsGrid = document.getElementById("projects-grid");
+      if (!projectsGrid || !Array.isArray(portfolioData.projects)) return;
+
+      const filteredProjects = filterCategory === "All"
+        ? portfolioData.projects
+        : portfolioData.projects.filter(p => p.category === filterCategory);
+
+      projectsGrid.innerHTML = filteredProjects
         .map(
           (proj) => `
           <article class="card">
@@ -44,7 +50,21 @@ document.addEventListener("DOMContentLoaded", () => {
         `
         )
         .join("");
-    }
+    };
+
+    // Initial project render
+    renderProjects("All");
+
+    // Project filter pill event listeners
+    const filterPills = document.querySelectorAll(".filter-pill");
+    filterPills.forEach(pill => {
+      pill.addEventListener("click", () => {
+        filterPills.forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        const filterVal = pill.getAttribute("data-filter");
+        renderProjects(filterVal);
+      });
+    });
 
     // Skills
     const skillsGrid = document.getElementById("skills-grid");
@@ -136,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ========================================================================
-     2. Dynamic Header Offset Measurement (Keeps Anchor Scrolls Exact)
+     2. Dynamic Header Offset Measurement
      ======================================================================== */
   const syncHeaderHeight = () => {
     if (!header) return;
@@ -156,7 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
       tab.classList.toggle("active", isMatch);
 
       if (isMatch) {
-        // Keep active pill centered on mobile horizontal ribbon without jumping page vertically
         tab.scrollIntoView({
           behavior: "smooth",
           inline: "center",
@@ -166,7 +185,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Click handler for instant feedback
   navTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       const targetId = tab.getAttribute("data-target");
@@ -174,7 +192,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Scroll-Spy via IntersectionObserver so scrolling updates the ribbon automatically
   const observerOptions = {
     root: null,
     rootMargin: "-25% 0px -60% 0px",
