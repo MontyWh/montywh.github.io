@@ -8,26 +8,80 @@ document.addEventListener("DOMContentLoaded", () => {
      1. Render Portfolio Content from data.js
      ======================================================================== */
   if (typeof portfolioData !== "undefined") {
-    // Brand Header & Footer
+    const profile = portfolioData.profile || {};
+
+    // Top Ribbon Brand & Footer
     const brandNameEl = document.getElementById("brand-name");
     const brandTaglineEl = document.getElementById("brand-tagline");
     const footerNameEl = document.getElementById("footer-name");
 
-    if (brandNameEl && portfolioData.profile?.name) {
-      brandNameEl.textContent = portfolioData.profile.name;
-      document.title = `${portfolioData.profile.name} | Portfolio`;
+    if (brandNameEl && profile.name) {
+      brandNameEl.textContent = profile.name;
+      document.title = `${profile.name} | Portfolio`;
     }
-    if (brandTaglineEl && portfolioData.profile?.tagline) {
-      brandTaglineEl.textContent = portfolioData.profile.tagline;
+    if (brandTaglineEl && profile.tagline) {
+      brandTaglineEl.textContent = profile.tagline;
     }
-    if (footerNameEl && portfolioData.profile?.name) {
-      footerNameEl.textContent = portfolioData.profile.name;
+    if (footerNameEl && profile.name) {
+      footerNameEl.textContent = profile.name;
     }
 
-    // Projects
-    const projectsGrid = document.getElementById("projects-grid");
-    if (projectsGrid && Array.isArray(portfolioData.projects)) {
-      projectsGrid.innerHTML = portfolioData.projects
+    // Top Profile Hero Card
+    const avatarEl = document.getElementById("profile-avatar");
+    const heroNameEl = document.getElementById("hero-name");
+    const heroStatusEl = document.getElementById("hero-status");
+    const heroTaglineEl = document.getElementById("hero-tagline");
+    const heroLocationEl = document.getElementById("hero-location");
+    const heroBioEl = document.getElementById("hero-bio");
+    const heroActionsEl = document.getElementById("hero-actions");
+
+    if (avatarEl && (profile.initials || profile.name)) {
+      avatarEl.textContent = profile.initials || profile.name.charAt(0).toUpperCase();
+    }
+    if (heroNameEl && profile.name) {
+      heroNameEl.textContent = profile.name;
+    }
+    if (heroStatusEl) {
+      if (profile.status) {
+        heroStatusEl.textContent = profile.status;
+      } else {
+        heroStatusEl.style.display = "none";
+      }
+    }
+    if (heroTaglineEl && profile.tagline) {
+      heroTaglineEl.textContent = profile.tagline;
+    }
+    if (heroLocationEl) {
+      if (profile.location) {
+        heroLocationEl.textContent = `📍 ${profile.location}`;
+      } else {
+        heroLocationEl.style.display = "none";
+      }
+    }
+    if (heroBioEl) {
+      const bioParagraphs = Array.isArray(profile.heroBio) && profile.heroBio.length > 0
+        ? profile.heroBio
+        : (profile.about || []);
+      heroBioEl.innerHTML = bioParagraphs.map((p) => `<p>${p}</p>`).join("");
+    }
+    if (heroActionsEl && Array.isArray(portfolioData.contact)) {
+      const primaryBtn = `<a href="#projects" class="profile-btn profile-btn--primary">View Projects ↓</a>`;
+      const contactBtns = portfolioData.contact
+        .map((c) => `<a href="${c.url}" target="_blank" rel="noopener" class="profile-btn">${c.label} ↗</a>`)
+        .join("");
+      heroActionsEl.innerHTML = primaryBtn + contactBtns;
+    }
+
+    // Projects & Category Filtering
+    const renderProjects = (filterCategory = "All") => {
+      const projectsGrid = document.getElementById("projects-grid");
+      if (!projectsGrid || !Array.isArray(portfolioData.projects)) return;
+
+      const filtered = filterCategory === "All"
+        ? portfolioData.projects
+        : portfolioData.projects.filter((p) => p.category === filterCategory);
+
+      projectsGrid.innerHTML = filtered
         .map(
           (proj) => `
           <article class="card">
@@ -44,7 +98,18 @@ document.addEventListener("DOMContentLoaded", () => {
         `
         )
         .join("");
-    }
+    };
+
+    renderProjects("All");
+
+    const filterPills = document.querySelectorAll(".filter-pill");
+    filterPills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        filterPills.forEach((p) => p.classList.remove("active"));
+        pill.classList.add("active");
+        renderProjects(pill.getAttribute("data-filter"));
+      });
+    });
 
     // Skills
     const skillsGrid = document.getElementById("skills-grid");
@@ -107,8 +172,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // About
     const aboutContent = document.getElementById("about-content");
-    if (aboutContent && Array.isArray(portfolioData.profile?.about)) {
-      aboutContent.innerHTML = portfolioData.profile.about
+    if (aboutContent && Array.isArray(profile.about)) {
+      aboutContent.innerHTML = profile.about
         .map((para) => `<p style="margin-bottom: 0.85rem; color: var(--text-secondary);">${para}</p>`)
         .join("");
     }

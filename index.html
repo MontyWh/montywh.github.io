@@ -14,7 +14,7 @@
       
       <!-- Top Row: Name & Role/Status -->
       <div class="app-header__brand">
-        <a href="#projects" class="brand-title" id="brand-name">Monty</a>
+        <a href="#profile" class="brand-title" id="brand-name">Monty</a>
         <span class="brand-subtitle" id="brand-tagline">Software & Security Engineer</span>
       </div>
 
@@ -54,6 +54,25 @@
 
   <!-- Main Web-App Viewport -->
   <main class="app-main">
+
+    <!-- Top Profile / Intro Hero Section -->
+    <section id="profile" class="profile-hero">
+      <div class="profile-hero__card">
+        <div class="profile-hero__header">
+          <div class="profile-avatar" id="profile-avatar" aria-hidden="true">M</div>
+          <div class="profile-hero__titles">
+            <div class="profile-hero__name-row">
+              <h1 id="hero-name">Monty</h1>
+              <span class="profile-status" id="hero-status">Available for opportunities</span>
+            </div>
+            <p class="profile-hero__role" id="hero-tagline">Software & Security Engineer</p>
+            <p class="profile-hero__location" id="hero-location"></p>
+          </div>
+        </div>
+        <div class="profile-hero__bio" id="hero-bio"></div>
+        <div class="profile-hero__actions" id="hero-actions"></div>
+      </div>
+    </section>
     
     <!-- Projects Section -->
     <section id="projects" class="app-section">
@@ -61,6 +80,16 @@
         <h2>Projects</h2>
         <p>Selected work across software systems, web engineering, and security.</p>
       </div>
+      
+      <!-- General Category Filter Pills -->
+      <div class="filter-pills" id="project-filters">
+        <button class="filter-pill active" data-filter="All">All</button>
+        <button class="filter-pill" data-filter="Software & Systems">Software & Systems</button>
+        <button class="filter-pill" data-filter="Web Development">Web Development</button>
+        <button class="filter-pill" data-filter="Game & Audio">Game & Audio</button>
+        <button class="filter-pill" data-filter="Cyber Security">Cyber Security</button>
+      </div>
+
       <div id="projects-grid" class="card-grid"></div>
     </section>
 
@@ -68,7 +97,7 @@
     <section id="skills" class="app-section">
       <div class="section-header">
         <h2>Skills</h2>
-        <p>Core competencies grouped by general IT and software engineering domains.</p>
+        <p>Core competencies grouped by general IT, software development, and security domains.</p>
       </div>
       <div id="skills-grid" class="skills-grid"></div>
     </section>

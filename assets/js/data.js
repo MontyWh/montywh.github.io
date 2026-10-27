@@ -1,10 +1,17 @@
 const portfolioData = {
   profile: {
     name: "Monty",
+    initials: "M",
     tagline: "Software & Security Engineer",
+    location: "United Kingdom",
+    status: "Open to opportunities",
+    heroBio: [
+      "Welcome to my portfolio. I design and build high-performance software systems, interactive web and audio applications, and secure infrastructure.",
+      "Explore my featured projects, technical competencies, and professional background below."
+    ],
     about: [
       "I am a software and security-focused engineer passionate about building reliable systems, secure applications, and interactive digital experiences.",
-      "My work spans across systems engineering, web architectures, game development, audio software, and cybersecurity principles."
+      "My work spans across systems engineering, web architectures, game development, audio software, and cybersecurity principles—focusing on clean architecture and real-world performance."
     ]
   },
 
@@ -12,28 +19,40 @@ const portfolioData = {
     {
       title: "Audio Engine & DSP Framework",
       description: "High-performance real-time audio processing software built with C++ and JUCE, featuring custom DSP algorithms and low-latency audio routing.",
-      tags: ["Systems Engineering", "Audio / DSP", "C++"],
+      category: "Game & Audio",
+      tags: ["C++", "JUCE", "DSP", "Audio Engineering"],
       github: "https://github.com/montywh",
       live: "#"
     },
     {
       title: "Interactive 3D Web Environment",
       description: "Immersive browser-based experience leveraging modern web graphics, shaders, and optimized component design.",
-      tags: ["Web Development", "Frontend", "JavaScript"],
+      category: "Web Development",
+      tags: ["JavaScript", "Three.js", "HTML/CSS", "WebGL"],
       github: "https://github.com/montywh",
       live: "#"
     },
     {
       title: "Secure Network & Threat Analyzer",
       description: "Cybersecurity tool designed for packet inspection, vulnerability scanning, and secure protocol enforcement.",
-      tags: ["Cyber Security", "Networking", "Python"],
+      category: "Cyber Security",
+      tags: ["Cyber Security", "Networking", "Python", "Linux"],
       github: "https://github.com/montywh",
       live: "#"
     },
     {
       title: "Multiplayer Simulation Game",
-      description: "A physics-driven simulation built in Unity using C# with networked multiplayer state synchronization.",
-      tags: ["Game Development", "Systems", "C#"],
+      description: "A physics-driven simulation built in Unity using C# with networked multiplayer state synchronization and spatial audio.",
+      category: "Game & Audio",
+      tags: ["C#", "Unity", "FMOD", "Game Dev"],
+      github: "https://github.com/montywh",
+      live: "#"
+    },
+    {
+      title: "Core Systems & CLI Toolkit",
+      description: "Cross-platform command-line utilities and systems automation tools engineered for speed and low memory overhead.",
+      category: "Software & Systems",
+      tags: ["C++", "C#", "Systems", "CLI"],
       github: "https://github.com/montywh",
       live: "#"
     }
@@ -42,19 +61,19 @@ const portfolioData = {
   skills: [
     {
       category: "Software Development & Systems",
-      items: ["Systems Programming", "Object-Oriented Design", "Algorithms & Data Structures", "Performance Optimization"]
+      items: ["Object-Oriented Programming (C++, C#, Python)", "Data Structures & Algorithms", "Concurrency & Memory Management", "API & System Architecture"]
     },
     {
-      category: "Web & Frontend Architecture",
-      items: ["Modern Web Development", "Interactive Graphics & Shaders", "UI/UX Architecture", "Responsive Design"]
+      category: "Web & Frontend Engineering",
+      items: ["Modern JavaScript / TypeScript", "HTML5 & Responsive CSS", "3D Web Graphics (Three.js / WebGL)", "Web App UI/UX"]
     },
     {
-      category: "Game Development & Audio Engineering",
-      items: ["Engine Architecture", "Real-Time Digital Signal Processing (DSP)", "Audio Middleware Integration", "Simulation Design"]
+      category: "Game Development & Audio / DSP",
+      items: ["Game Engines (Unity & Real-time 3D)", "Digital Signal Processing (DSP)", "Audio Frameworks (JUCE, FMOD)", "Physics & State Simulation"]
     },
     {
-      category: "Cybersecurity & IT Infrastructure",
-      items: ["Network Security & Protocols", "Vulnerability Assessment", "Linux System Administration", "Secure Coding Practices"]
+      category: "Cyber Security & IT Infrastructure",
+      items: ["Network Security & Packet Analysis", "Vulnerability Assessment & Hardening", "Linux Administration & Shell Scripting", "Git & CI/CD Workflows"]
     }
   ],
 
