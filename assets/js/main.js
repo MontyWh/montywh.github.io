@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (heroActionsEl) {
       const primaryBtns = "";
       const externalBtns = (portfolioData.contact || [])
-        .filter((c) => c.url.startsWith("http") || c.icon === "gmail")
+        .filter((c) => c.url.startsWith("http") && c.icon !== "github")
         .map((c) =>
           ICONS[c.icon]
             ? `<a href="${c.url}" ${c.url.startsWith("http") ? 'target="_blank" rel="noopener"' : ""} class="profile-btn profile-btn--icon" aria-label="${c.label}" title="${c.label}">${ICONS[c.icon]}</a>`

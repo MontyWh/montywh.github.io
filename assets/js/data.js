@@ -371,7 +371,6 @@ const portfolioData = {
       value: "@montaguewh",
       icon: "linkedin"
     },
-    { label: "Location", url: "#profile", value: "Bristol & Bath, UK" },
     {
       label: "Email",
       url: "mailto:monty.whishaw@gmail.com",

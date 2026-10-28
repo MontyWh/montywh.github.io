@@ -548,9 +548,14 @@ body {
 
 /* Contact Grid */
 .contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.9rem;
+}
+
+.contact-grid .contact-card {
+  flex: 0 1 260px;
 }
 
 .contact-card {
