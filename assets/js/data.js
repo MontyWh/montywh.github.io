@@ -54,7 +54,7 @@ const portfolioData = {
       description: "Developing bespoke audio/AV software and plugins using C++ (JUCE), " +
         "Three.JS, and C#, integrating DSP and synthesis. Created textures and materials " +
         "for 3D models in Blender for a virtual gramophone audio plugin GUI.",
-      category: "Software & Systems",
+      category: "Software & Hardware Development",
       tags: ["C++", "JUCE", "Three.JS", "C#", "DSP", "Blender"],
       github: "https://github.com/montywh"
     },
@@ -63,9 +63,8 @@ const portfolioData = {
       description: "Prototyped an immersive VR Digital Audio Workstation in Unity for a " +
         "Meta Quest 2, featuring spatial audio playback, haptic feedback, and a 3D " +
         "timeline interface.",
-      category: "Interactive & VR Systems",
+      category: "Immersive Media and Technology",
       tags: ["Unity", "C#", "VR", "Spatial Audio"],
-      github: "https://github.com/montywh"
     },
     {
       title: "Government Forms Processing Automation",
@@ -73,16 +72,15 @@ const portfolioData = {
         "forms processing across UK government departments during internship at the " +
         "Government Digital Service (GDS). Self-learning covered webpage creation " +
         "(Ruby on Rails, etc.) and forms processing.",
-      category: "Web & IT Automation",
+      category: "Information Technology",
       tags: ["Ruby on Rails", "GDS", "IT Automation", "Documentation"],
-      github: "https://github.com/montywh"
     },
     {
       title: "MaxMSP Virtual Instruments & Microcontrollers",
       description: "Built virtual instruments in MaxMSP, including a software synth, " +
         "sampler, and drum machine, plus custom microcontroller devices for real-time " +
         "parameter control.",
-      category: "Software & Systems",
+      category: "Software & Hardware Development",
       tags: ["MaxMSP", "Microcontrollers", "Synthesis", "Hardware"],
       github: "https://github.com/montywh"
     },
@@ -92,16 +90,16 @@ const portfolioData = {
         "Logic, Studio One, and MuseScore. Audio implementation focused on programming " +
         "and implementing the adaptive soundtrack in Unity/C# and FMOD, applying DSP " +
         "code for fluid gameplay response.",
-      category: "Interactive & VR Systems",
+      category: "Immersive Media and Technology",
       tags: ["Unity", "C#", "FMOD", "DSP", "Logic"],
-      github: "https://github.com/montywh"
+      github: "https://github.com/MontyWh/BobaQuarium-GGJ_2025"
     },
     {
       title: "Surround Sound Chernobyl Scene Redesign",
       description: "Designed soundscapes for film and games, including a full redesign of " +
         "a Chernobyl scene using surround sound, dialogue editing, and foley; " +
         "achieved a 2:1 grade.",
-      category: "Interactive & VR Systems",
+      category: "Immersive Media and Technology",
       tags: ["Surround Sound", "Pro Tools", "Reaper", "Post-Production"],
       github: "https://github.com/montywh"
     }
