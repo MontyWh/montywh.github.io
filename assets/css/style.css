@@ -308,6 +308,29 @@ body {
 }
 
 .venn__hub,
+.venn__node,
+.venn__hub {
+  cursor: grab;
+  user-select: none;
+}
+
+.venn__tools {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.venn__copy {
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.5rem;
+  background: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .venn__node {
   position: absolute;
   transform: translate(-50%, -50%);

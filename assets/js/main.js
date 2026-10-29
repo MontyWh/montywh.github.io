@@ -199,19 +199,25 @@ document.addEventListener("DOMContentLoaded", () => {
       let H = Hnarrow;
       if (wide) {
         const saved = {
-          hubs: { [A]: [288, 430], [B]: [606, 334], [C]: [333, 207] },
+          hubs: { [A]: [318, 430], [B]: [636, 334], [C]: [363, 207] },
           nodes: {
-            "Pro Tools": [25, 672], Reaper: [16, 571], Logic: [119, 575], Cubase: [43, 768],
-            "Fender Studio Pro": [158, 740], MuseScore: [266, 675], "Q-Lab": [118, 646],
-            "5.1.2 / 7.1.4 Surround": [110, 485], Ambisonics: [327, 741], "Foley & Field Recording": [50, 419],
-            "Mixing Desks": [46, 357], "Technical Documentation": [768, 465], "Discord / Zoom": [775, 683],
-            "Microsoft Office": [461, 468], "GDS Standards": [678, 621], "BECTU Starting Safely": [573, 706],
-            "Duke of Edinburgh (Bronze)": [428, 778], "C++": [418, 91], "C#": [624, 16], "Gather Town": [406, 657],
-            Unity: [23, 213], FMOD: [202, 111], MaxMSP: [58, 134], JUCE: [103, 70], DSP: [246, 16],
-            Blender: [313, 290], "HTML / CSS": [794, 176], JavaScript: [675, 140], JSON: [766, 260],
-            Ruby: [564, 106], "Agile Environments": [769, 350], "Three.JS": [401, 320]
+            "Pro Tools": [55, 672], Reaper: [46, 571], Logic: [149, 575], Cubase: [73, 768],
+            "Fender Studio Pro": [188, 740], MuseScore: [296, 675], "Q-Lab": [148, 646],
+            "5.1.2 / 7.1.4 Surround": [140, 485], Ambisonics: [357, 741], "Foley & Field Recording": [80, 419],
+            "Mixing Desks": [76, 357], "Technical Documentation": [798, 465], "Discord / Zoom": [805, 683],
+            "Microsoft Office": [491, 468], "GDS Standards": [708, 621], "BECTU Starting Safely": [603, 706],
+            "Duke of Edinburgh (Bronze)": [458, 778], "C++": [448, 91], "C#": [654, 16], "Gather Town": [436, 657],
+            Unity: [53, 213], FMOD: [232, 111], MaxMSP: [88, 134], JUCE: [133, 70], DSP: [276, 16],
+            Blender: [344, 306], "HTML / CSS": [824, 176], JSON: [796, 260],
+            Ruby: [594, 106], "Agile, SCRUM, Etc.": [500, 357], "JavaScript (Including Three.JS)": [524, 268]
           }
         };
+        // TEMPORARY auto-save: TEMP_venn_layout.json (via TEMP_save_server.ps1) overrides the baked-in layout
+        const stored = tempLayout;
+        if (stored) {
+          Object.assign(saved.nodes, stored.nodes);
+          Object.assign(saved.hubs, stored.hubs);
+        }
         [A, B, C].forEach((id) => (hub[id] = saved.hubs[id]));
         nodes.forEach((n) => {
           if (saved.nodes[n.name]) [n.x, n.y] = saved.nodes[n.name];
@@ -272,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .flatMap((n) =>
           n.hubs.map((id) => {
             const bend = bendFor(hub[id][0], hub[id][1], n.x, n.y, n, id);
-            return `<path class="venn__link" stroke="${colourOf[id]}" d="${curve(hub[id][0], hub[id][1], n.x, n.y, bend)}"/>`;
+            return `<path class="venn__link" data-h="${id}" data-n="${n.name}" stroke="${colourOf[id]}" d="${curve(hub[id][0], hub[id][1], n.x, n.y, bend)}"/>`;
           })
         )
         .join("");
@@ -294,26 +300,116 @@ document.addEventListener("DOMContentLoaded", () => {
       const hubEls = [A, B, C]
         .map(
           (id) =>
-            `<div class="venn__hub" style="left:${px(hub[id][0])};top:${px(hub[id][1])};${styleFor(id)};border-width:3px">${labelOf(id)}</div>`
+            `<div class="venn__hub" data-hub="${id}" style="left:${px(hub[id][0])};top:${px(hub[id][1])};${styleFor(id)};border-width:3px">${labelOf(id)}</div>`
         )
         .join("");
       const nodeEls = nodes
         .map((n) => {
           const sets_ = n.hubs.map(labelOf).join(" + ");
           const key = n.hubs.length === 1 ? n.hubs[0] : [...n.hubs].sort().join("+");
-          return `<span class="tag venn__node" title="${sets_}" style="left:${px(n.x)};top:${px(n.y)};${styleFor(key)}">${n.name}</span>`;
+          return `<span class="tag venn__node" data-node="${n.name}" title="${sets_}" style="left:${px(n.x)};top:${px(n.y)};${styleFor(key)}">${n.name}</span>`;
         })
         .join("");
 
       heroHighlightsEl.innerHTML = `
+                  <div class="venn__tools"><button type="button" class="venn__copy">Copy layout</button><button type="button" class="venn__copy venn__reset">Reset</button><span class="venn__note">Temporary: drag any box (auto-saves to TEMP_venn_layout.json)</span></div>
                   <div style="height:${Math.ceil(H * k)}px">
                   <div class="venn__stage${narrow ? " venn__stage--narrow" : ""}" style="width:${W}px;height:${H}px;transform:scale(${k});transform-origin:0 0" role="group" aria-label="Skills map linking ${sets.map((s) => s.label).join(", ")}">
                     <svg class="venn__web" viewBox="0 0 ${W} ${H}" aria-hidden="true">${web}${links}</svg>
                     ${hubEls}${nodeEls}
                   </div>
                   </div>`;
+
+      // TEMPORARY drag-to-move control
+      const stage = heroHighlightsEl.querySelector(".venn__stage");
+      const setNote = (text) => {
+        const note = heroHighlightsEl.querySelector(".venn__note");
+        if (note) note.textContent = text;
+      };
+      // Writes the whole layout to TEMP_venn_layout.json through TEMP_save_server.ps1
+      const autosave = () => {
+        if (!wide) {
+          setNote("Not saved: widen the window to at least 800px to save moves");
+          return;
+        }
+        const lay = { hubs: {}, nodes: {} };
+        [A, B, C].forEach((id) => (lay.hubs[id] = hub[id].map(Math.round)));
+        nodes.forEach((n) => (lay.nodes[n.name] = [Math.round(n.x), Math.round(n.y)]));
+        tempLayout = lay;
+        fetch(TEMP_SERVER + "/save", { method: "POST", body: JSON.stringify(lay), keepalive: true })
+          .then((r) => setNote(r.ok ? "Auto-saved " + new Date().toLocaleTimeString() : "SAVE FAILED (server error)"))
+          .catch(() => setNote("SAVE FAILED: start TEMP_save_server.ps1"));
+      };
+      let saveTimer = 0;
+      const redrawLinks = (changed) => {
+        stage.querySelectorAll(".venn__link").forEach((p) => {
+          const n = nodes.find((o) => o.name === p.dataset.n);
+          const h = hub[p.dataset.h];
+          if (changed && changed !== n && changed !== h) return;
+          p.setAttribute("d", curve(h[0], h[1], n.x, n.y, bendFor(h[0], h[1], n.x, n.y, n, p.dataset.h)));
+        });
+      };
+      stage.addEventListener("pointerdown", (e) => {
+        const el = e.target.closest("[data-node],[data-hub]");
+        if (!el) return;
+        e.preventDefault();
+        const target = el.dataset.hub ? hub[el.dataset.hub] : nodes.find((o) => o.name === el.dataset.node);
+        const pos = Array.isArray(target) ? target : [target.x, target.y];
+        const start = { x: e.clientX, y: e.clientY, px: pos[0], py: pos[1] };
+        el.setPointerCapture(e.pointerId);
+        el.style.zIndex = 5;
+        el.style.cursor = "grabbing";
+        const move = (ev) => {
+          const x = Math.round(start.px + (ev.clientX - start.x) / k);
+          const y = Math.round(start.py + (ev.clientY - start.y) / k);
+          if (Array.isArray(target)) {
+            target[0] = x;
+            target[1] = y;
+          } else {
+            target.x = x;
+            target.y = y;
+          }
+          el.style.left = px(x);
+          el.style.top = px(y);
+          redrawLinks(target);
+          clearTimeout(saveTimer);
+          saveTimer = setTimeout(autosave, 250);
+        };
+        const up = () => {
+          el.removeEventListener("pointermove", move);
+          el.removeEventListener("pointerup", up);
+          el.removeEventListener("pointercancel", up);
+          el.removeEventListener("lostpointercapture", up);
+          el.style.zIndex = "";
+          el.style.cursor = "";
+          autosave();
+        };
+        el.addEventListener("pointermove", move);
+        el.addEventListener("pointerup", up);
+        el.addEventListener("pointercancel", up);
+        el.addEventListener("lostpointercapture", up);
+      });
+      stage.querySelectorAll("[data-node],[data-hub]").forEach((el) => (el.style.touchAction = "none"));
+      heroHighlightsEl.querySelector(".venn__reset").addEventListener("click", () => {
+        tempLayout = null;
+        fetch(TEMP_SERVER + "/save", { method: "POST", body: "{}" }).catch(() => {});
+        lastW = 0;
+        draw();
+      });
+      heroHighlightsEl.querySelector(".venn__copy").addEventListener("click", (ev) => {
+        const out = { width: W, hubs: {}, nodes: {} };
+        [A, B, C].forEach((id) => (out.hubs[id] = hub[id].map(Math.round)));
+        nodes.forEach((n) => (out.nodes[n.name] = [Math.round(n.x), Math.round(n.y)]));
+        const text = JSON.stringify(out);
+        const btn = ev.currentTarget;
+        const done = () => (btn.textContent = "Copied!");
+        if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, () => window.prompt("Copy this layout:", text));
+        else window.prompt("Copy this layout:", text);
+      });
     };
 
+                let tempLayout = null;
+                const TEMP_SERVER = "http://127.0.0.1:8765";
                 let lastW = 0;
                 const draw = () => {
                   const w = Math.round(Math.min(1000, Math.max(300, heroHighlightsEl.clientWidth)));
@@ -324,7 +420,14 @@ document.addEventListener("DOMContentLoaded", () => {
                   const k = wide ? Math.min(1.15, w / 806) : 1;
                   renderMap(wide ? 806 : w, k, w, wide);
                 };
-                draw();
+                // TEMPORARY: load the auto-saved layout from TEMP_venn_layout.json before the first draw
+                fetch(TEMP_SERVER + "/load")
+                  .then((r) => r.json())
+                  .then((d) => {
+                    if (d && d.nodes) tempLayout = d;
+                  })
+                  .catch(() => {})
+                  .finally(draw);
                 window.addEventListener("resize", () => requestAnimationFrame(draw));
               }
     if (heroActionsEl) {
