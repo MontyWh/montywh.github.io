@@ -2,19 +2,29 @@ const portfolioData = {
   profile: {
     name: "Montague Whishaw",
     initials: "MW",
-    tagline: "Aspiring Audio Software Developer & Technologist",
-    location: "England, UK",
+    tagline: "Aspiring Software/Hardware Developer & Technologist",
+    location: "Bath/Bristol, England, UK",
     status: "BSc (Hons) Graduate",
     heroBio: [
-      "Hello, Montague here! Recent graduate in Audio and Music Technology at the " +
-        "University of the West of England (UWE Bristol), seeking a role in an audio team " +
-        "with a strong teamworking and training ethic, to develop and contribute existing " +
-        "skills in audio software development."
+      "Hey there 👋! I'm Montague, a recent graduate from UWE Bristol with a passion for software development, cyber security, " +
+      "audio 🔊 & information technology, and immersive media.",
+        " Growing up a guitarist/bassist, I developed an interest in music/audio and a variety of other arts. Those who know me here in the UK, " +
+        "know me as someone who frequents the cinema, the local music scene and the social community, " +
+        "noting my recent voluntary commitments to CircleUp, a nationwide 20-39 year olds community, participating in " +
+        "sports, arts and bringing people together.",
+      "Having been to multiple countries and volunteering in Costa Rica" +
+      " <svg viewBox='0 0 5 3' width='20' height='12' role='img' aria-label='Flag of Costa Rica' style='vertical-align: -1px'><rect width='5' height='3' fill='#fff'/><rect y='0' width='5' height='0.5' fill='#002b7f'/><rect y='1' width='5' height='1' fill='#ce1126'/><rect y='2.5' width='5' height='0.5' fill='#002b7f'/></svg> " +
+        "and working in the USA" +
+        " <svg viewBox='0 0 19 10' width='20' height='11' role='img' aria-label='Flag of the United States' style='vertical-align: -1px'><rect width='19' height='10' fill='#fff'/><path fill='#b22234' d='M0 0h19v.77H0zm0 1.54h19v.77H0zm0 3.08h19v.77H0zm0 1.54h19v.77H0zm0 3.08h19v.77H0zm0 1.54h19v.77H0zm0 3.08h19v.77H0'/><rect width='7.6' height='5.38' fill='#3c3b6e'/><g fill='#fff'><circle cx='1' cy='.7' r='.22'/><circle cx='2.2' cy='.7' r='.22'/><circle cx='3.4' cy='.7' r='.22'/><circle cx='4.6' cy='.7' r='.22'/><circle cx='5.8' cy='.7' r='.22'/><circle cx='7' cy='.7' r='.22'/><circle cx='1.6' cy='1.5' r='.22'/><circle cx='2.8' cy='1.5' r='.22'/><circle cx='4' cy='1.5' r='.22'/><circle cx='5.2' cy='1.5' r='.22'/><circle cx='6.4' cy='1.5' r='.22'/><circle cx='1' cy='2.3' r='.22'/><circle cx='2.2' cy='2.3' r='.22'/><circle cx='3.4' cy='2.3' r='.22'/><circle cx='4.6' cy='2.3' r='.22'/><circle cx='5.8' cy='2.3' r='.22'/><circle cx='7' cy='2.3' r='.22'/><circle cx='1.6' cy='3.1' r='.22'/><circle cx='2.8' cy='3.1' r='.22'/><circle cx='4' cy='3.1' r='.22'/><circle cx='5.2' cy='3.1' r='.22'/><circle cx='6.4' cy='3.1' r='.22'/><circle cx='1' cy='3.9' r='.22'/><circle cx='2.2' cy='3.9' r='.22'/><circle cx='3.4' cy='3.9' r='.22'/><circle cx='4.6' cy='3.9' r='.22'/><circle cx='5.8' cy='3.9' r='.22'/><circle cx='7' cy='3.9' r='.22'/><circle cx='1.6' cy='4.7' r='.22'/><circle cx='2.8' cy='4.7' r='.22'/><circle cx='4' cy='4.7' r='.22'/><circle cx='5.2' cy='4.7' r='.22'/><circle cx='6.4' cy='4.7' r='.22'/></g></svg>, I love to connect; " +
+        "to learn from others and share my own experiences and findings with them. " +
+        "As a huge fan of ADC (Audio Developer Conference), I actively follow the latest developments " +
+        "in audio technology and enjoy connecting with fellow enthusiasts. " +
+        "Volunteered online at ADC two years ago; volunteered again last year onsite; and am set to volunteer again this year, and annually forever after."
     ],
     highlights: [
       {
         label: "Software Development",
-        text: "C++ (JUCE), DSP, Unity/C#, FMOD, MaxMSP, JavaScript (Three.JS), HTML/CSS, JSON, Ruby, Blender."
+        text: "Software development skills cover C++ (JUCE), DSP, Unity/C#, FMOD, and MaxMSP."
       },
       {
         label: "Audio Engineering & Systems",
@@ -339,18 +349,18 @@ const portfolioData = {
 
   skills: [
     {
-      category: "Software Development & Systems",
-      items: ["C++ (JUCE)", "DSP", "Unity / C#", "FMOD", "MaxMSP"]
+      category: "Software Development",
+      items: ["C++", "JUCE", "DSP", "Unity / C#", "FMOD", "MaxMSP", "Blender (development of visual assets used in audio plugin interfaces)"]
     },
     {
-      category: "Web, Data & IT Automation",
-      items: ["JavaScript (Three.JS)", "HTML / CSS", "JSON", "Ruby", "Blender"]
+      category: "Web & Audiovisual",
+      items: ["JavaScript (Three.JS)", "HTML / CSS", "JSON", "Ruby"]
     },
     {
-      category: "Audio Engineering & Hardware",
+      category: "Sound Engineering & Music Composition",
       items: [
-        "Pro Tools", "Reaper", "Logic", "Studio One", "MuseScore",
-        "Fender Studio", "Q-Lab", "Surround / Ambisonics"
+        "Pro Tools", "Reaper", "Logic", "Fender Studio Pro (Formerly 'Studio One')", "MuseScore", "Cubase",
+        "Q-Lab", "5.1.2 / 7.1.4 Surround", "Ambisonics", "Foley & Field Recording", "Mixing Desks"
       ]
     },
     {
