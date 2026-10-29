@@ -267,31 +267,79 @@ body {
 }
 
 .profile-hero__highlights {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 0.75rem;
   margin-top: 1.1rem;
   padding-top: 1.1rem;
   border-top: 1px solid var(--border-subtle);
 }
 
-.profile-highlight-item {
-  font-size: 0.86rem;
-  color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--border-subtle);
-  padding: 0.65rem 0.85rem;
-  border-radius: 0.6rem;
+/* Skills mind map: topics in the middle, skill nodes joined to every topic they belong to.
+   The script sizes the stage to its container, so skills branch sideways or downwards as needed. */
+.venn__stage {
+  position: relative;
+  margin: 0;
 }
 
-.profile-highlight-item strong {
-  color: var(--text-primary);
-  display: block;
-  margin-bottom: 0.15rem;
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--accent-teal);
+.venn__web {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.venn__ring,
+.venn__spoke {
+  fill: none;
+  stroke: rgba(15, 23, 42, 0.2);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.venn__spoke {
+  stroke-dasharray: 4 4;
+}
+
+.venn__link {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 2;
+  stroke-opacity: 0.55;
+  vector-effect: non-scaling-stroke;
+}
+
+.venn__hub,
+.venn__node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.venn__hub {
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  max-width: 10.5rem;
+  text-align: center;
+  line-height: 1.2;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.venn .tag.venn__node {
+  max-width: 8.5rem;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  text-align: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.7rem;
+  background-color: #fff;
+  color: #111827;
+  border-color: rgba(15, 23, 42, 0.3);
+}
+
+.venn__stage--narrow .venn__hub {
+  max-width: 8rem;
 }
 
 .profile-hero__actions {
@@ -469,26 +517,6 @@ body {
   text-decoration: underline;
 }
 
-/* Skills Grid */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
-}
-
-.skill-group {
-  background-color: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: 0.75rem;
-  padding: 1.15rem;
-}
-
-.skill-group h3 {
-  font-size: 0.98rem;
-  color: var(--text-primary);
-  margin-bottom: 0.75rem;
-}
-
 /* Timeline */
 .timeline-list {
   display: flex;
@@ -653,7 +681,6 @@ body {
 .card,
 .prose-card,
 .timeline-item,
-.skill-group,
 .contact-card {
   --bg-elevated: #f8fafc;
   --border-subtle: rgba(15, 23, 42, 0.12);
@@ -666,10 +693,6 @@ body {
   --accent-pill-border: rgba(15, 118, 110, 0.3);
   --card-hover-border: rgba(15, 118, 110, 0.6);
   color: var(--text-primary);
-}
-
-.profile-highlight-item {
-  background: rgba(15, 23, 42, 0.04);
 }
 
 .profile-btn {
@@ -708,8 +731,7 @@ body {
 .tag,
 .profile-hero__role,
 .timeline-org,
-.about-block h3,
-.profile-highlight-item strong {
+.about-block h3 {
   color: #111827;
 }
 
@@ -747,7 +769,6 @@ body {
 .card,
 .prose-card,
 .timeline-item,
-.skill-group,
 .contact-card {
   --text-primary: #000000;
   --text-secondary: #000000;
@@ -763,7 +784,6 @@ body {
 .timeline-org,
 .timeline-period,
 .about-block h3,
-.profile-highlight-item strong,
 .contact-card:hover {
   color: #000000;
 }
@@ -794,14 +814,6 @@ body {
 
 .brand-title:hover {
   filter: brightness(1.15);
-}
-
-#hero-highlights .profile-highlight-item strong {
-  color: #ef2b1a;
-  background-image: linear-gradient(90deg, #b3000f, #ff2a1a 60%, #ff5a2a);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .timeline-role {

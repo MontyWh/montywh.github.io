@@ -71,18 +71,262 @@ document.addEventListener("DOMContentLoaded", () => {
     if (heroBioEl && Array.isArray(profile.heroBio)) {
       heroBioEl.innerHTML = profile.heroBio.map((p) => `<p>${p}</p>`).join("");
     }
-    if (heroHighlightsEl && Array.isArray(profile.highlights)) {
-      heroHighlightsEl.innerHTML = profile.highlights
-        .map(
-          (item) => `
-          <div class="profile-highlight-item">
-            <strong>${item.label}</strong>
-            <span>${item.text}</span>
-          </div>
-        `
+    if (heroHighlightsEl && portfolioData.skills && Array.isArray(portfolioData.skills.items)) {
+      const { sets, items } = portfolioData.skills;
+      const [A, B, C] = sets.map((s) => s.id);
+      const labelOf = (id) => sets.find((s) => s.id === id).label;
+
+      const itemsFor = (ids) =>
+        items.filter((i) => i.in.length === ids.length && ids.every((id) => i.in.includes(id)));
+      const colourOf = { [A]: "#0f766e", [B]: "#2563eb", [C]: "#ea580c" };
+
+      // Mind map: the three topics sit together in the middle and each skill is joined to every topic
+      // it belongs to. The width follows the container; skills branch sideways while there is room
+      // and downwards once there isn't, so the height is whatever the layout needs.
+      const renderMap = (W, k, realW, wide) => {
+      const narrow = W < 640;
+      const HUB_R = narrow ? 95 : 105;
+      const centroid = [W / 2, 0];
+      // Wide maps stretch the skill rings sideways into an ellipse so the extra width gets used
+      const ex = Math.min(2.2, Math.max(1, (W - 450) / 150));
+      const polar = (deg, r, sx = 1) => [
+        centroid[0] + r * sx * Math.cos((deg * Math.PI) / 180),
+        centroid[1] + r * Math.sin((deg * Math.PI) / 180)
+      ];
+      const hub = { [A]: polar(150, HUB_R), [B]: polar(30, HUB_R), [C]: polar(-90, HUB_R) };
+
+      const nodes = []; // { name, x, y, hubs }
+      const hubW = narrow ? 128 : 160;
+      const hubH = narrow ? 84 : 64;
+      // The all-topics skill sits in the gap between the top topic and the two lower ones
+      const tripleY = narrow ? -28 : 0;
+      const boxes = [
+        ...[A, B, C].map((id) => ({ x: hub[id][0], y: hub[id][1], w: hubW, h: hubH })),
+        { x: centroid[0], y: tripleY, w: 110, h: 44 }
+      ];
+      const GAP = 22;
+      let lineGap = narrow ? 30 : 42; // nodes keep this far from other lines running to the same topic
+      const segDist = (px, py, [ax, ay], [bx, by]) => {
+        const dx = bx - ax;
+        const dy = by - ay;
+        const t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy || 1)));
+        return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
+      };
+      const linesClear = (x, y, hubs) =>
+        nodes.every((n) =>
+          n.hubs.every((id) => !hubs.includes(id) || (
+            segDist(x, y, hub[id], [n.x, n.y]) >= lineGap &&
+            segDist(n.x, n.y, hub[id], [x, y]) >= lineGap
+          ))
+        );
+      const fits = (x, y, w, h, hubs) =>
+        x - w / 2 >= 0 &&
+        x + w / 2 <= W &&
+        linesClear(x, y, hubs) &&
+        boxes.every((b) => Math.abs(b.x - x) >= (b.w + w) / 2 + GAP || Math.abs(b.y - y) >= (b.h + h) / 2 + GAP);
+
+      const sectors = [
+        { ids: [A], deg: 150 },
+        { ids: [B], deg: 30 },
+        { ids: [C], deg: -90 },
+        { ids: [A, B], deg: 90 },
+        { ids: [A, C], deg: 210 },
+        { ids: [B, C], deg: -30 }
+      ];
+      sectors.forEach(({ ids, deg }) => {
+        const list = itemsFor(ids);
+        // Fan each topic's skills across an arc so their lines leave the topic at different angles
+        const fan = Math.min(ids.length > 1 ? 36 : 56, list.length * 9);
+        list.forEach((item, n) => {
+          const base = list.length > 1 ? deg - fan / 2 + (fan * n) / (list.length - 1) : deg;
+          const w = Math.min(136, item.name.length * 7 + 26) + 8;
+          const h = item.name.length * 7 + 26 > 136 ? 48 : 34;
+          let spot = null;
+          // Prefer wide line spacing; relax it only when a skill cannot be placed otherwise
+          const baseGap = narrow ? 22 : 28;
+          for (const factor of [1, 0.7, 0.4, 0]) {
+            lineGap = baseGap * factor;
+            for (const span of factor > 0 ? [0, 12, 24, 40] : [0, 12, 24, 40, 60, 90]) {
+              for (let r = narrow ? 160 : 185; r <= (factor > 0 ? 650 : 1800) && !spot; r += 10) {
+                for (let off = 0; off <= span && !spot; off += 4) {
+                  for (const sign of off === 0 ? [1] : [1, -1]) {
+                    const [x, y] = polar(base + sign * off, r, ex);
+                    if (fits(x, y, w, h, item.in)) {
+                      spot = { x, y };
+                      break;
+                    }
+                  }
+                }
+              }
+              if (spot) break;
+            }
+            if (spot) break;
+          }
+          spot = spot || { x: polar(base, 300, ex)[0], y: polar(base, 300, ex)[1] };
+          boxes.push({ ...spot, w, h });
+          nodes.push({ name: item.name, x: spot.x, y: spot.y, hubs: item.in });
+        });
+      });
+
+      itemsFor([A, B, C]).forEach((item) =>
+        nodes.push({ name: item.name, x: centroid[0], y: tripleY, hubs: item.in })
+      );
+
+      // Trim the empty space: shift everything so the layout starts just below the top edge
+      const allBoxes = boxes.map((b) => [b.y - b.h / 2, b.y + b.h / 2]);
+      const minY = Math.min(...allBoxes.map((b) => b[0])) - 12;
+      const Hnarrow = Math.ceil(Math.max(...allBoxes.map((b) => b[1])) + 12 - minY);
+      const minX = Math.min(...boxes.map((b) => b.x - b.w / 2));
+      const maxX = Math.max(...boxes.map((b) => b.x + b.w / 2));
+      const shiftX = (W - maxX - minX) / 2; // centre the map horizontally
+      [...Object.values(hub), centroid, ...nodes].forEach((p) => {
+        if (Array.isArray(p)) {
+          p[1] -= minY;
+          p[0] += shiftX;
+        } else {
+          p.y -= minY;
+          p.x += shiftX;
+        }
+      });
+      const px = (v) => `${v.toFixed(1)}px`;
+
+      const dims = (name) => {
+        const full = name.length * 7 + 26;
+        return { w: Math.min(136, full) + 8, h: full > 136 ? 48 : 34 };
+      };
+
+      // Arranged by hand for the wide layout, so it is used as-is whenever the map is wide
+      let H = Hnarrow;
+      if (wide) {
+        const saved = {
+          hubs: { [A]: [288, 430], [B]: [606, 334], [C]: [333, 207] },
+          nodes: {
+            "Pro Tools": [25, 672], Reaper: [16, 571], Logic: [119, 575], Cubase: [43, 768],
+            "Fender Studio Pro": [158, 740], MuseScore: [266, 675], "Q-Lab": [118, 646],
+            "5.1.2 / 7.1.4 Surround": [110, 485], Ambisonics: [327, 741], "Foley & Field Recording": [50, 419],
+            "Mixing Desks": [46, 357], "Technical Documentation": [768, 465], "Discord / Zoom": [775, 683],
+            "Microsoft Office": [461, 468], "GDS Standards": [678, 621], "BECTU Starting Safely": [573, 706],
+            "Duke of Edinburgh (Bronze)": [428, 778], "C++": [418, 91], "C#": [624, 16], "Gather Town": [406, 657],
+            Unity: [23, 213], FMOD: [202, 111], MaxMSP: [58, 134], JUCE: [103, 70], DSP: [246, 16],
+            Blender: [313, 290], "HTML / CSS": [794, 176], JavaScript: [675, 140], JSON: [766, 260],
+            Ruby: [564, 106], "Agile Environments": [769, 350], "Three.JS": [401, 320]
+          }
+        };
+        [A, B, C].forEach((id) => (hub[id] = saved.hubs[id]));
+        nodes.forEach((n) => {
+          if (saved.nodes[n.name]) [n.x, n.y] = saved.nodes[n.name];
+        });
+        H = 812;
+        // Keep every bubble inside the map: shift to the left edge and fit the scale to the real width
+        const spans = [
+          ...nodes.map((n) => [n.x - dims(n.name).w / 2, n.x + dims(n.name).w / 2]),
+          ...[A, B, C].map((id) => [hub[id][0] - hubW / 2, hub[id][0] + hubW / 2])
+        ];
+        const left = Math.min(...spans.map((s) => s[0])) - 6;
+        W = Math.ceil(Math.max(...spans.map((s) => s[1])) - left + 6);
+        nodes.forEach((n) => (n.x -= left));
+        [A, B, C].forEach((id) => (hub[id] = [hub[id][0] - left, hub[id][1]]));
+        k = Math.min(1.15, realW / W);
+      }
+
+      // Mind-map branches: curves from each topic to its skills
+      const curve = (x1, y1, x2, y2, bend = 0.12) => {
+        const mx = (x1 + x2) / 2 + (y2 - y1) * bend;
+        const my = (y1 + y2) / 2 - (x2 - x1) * bend;
+        return `M${x1} ${y1} Q${mx} ${my} ${x2} ${y2}`;
+      };
+      // On narrower maps each branch picks the bend that crosses the fewest other bubbles
+      const bendFor = (x1, y1, x2, y2, self, hubId) => {
+        if (wide) return 0.12;
+        const obstacles = [
+          ...nodes.filter((o) => o !== self).map((o) => ({ x: o.x, y: o.y, ...dims(o.name) })),
+          ...[A, B, C].filter((o) => o !== hubId).map((o) => ({ x: hub[o][0], y: hub[o][1], w: hubW, h: hubH }))
+        ];
+        let best = 0.12;
+        let bestScore = Infinity;
+        for (const bend of [0.12, -0.12, 0.25, -0.25, 0.4, -0.4, 0.6, -0.6]) {
+          const cx = (x1 + x2) / 2 + (y2 - y1) * bend;
+          const cy = (y1 + y2) / 2 - (x2 - x1) * bend;
+          let score = 0;
+          obstacles.forEach((o) => {
+            for (let s = 1; s < 28; s++) {
+              const t = s / 28;
+              const x = (1 - t) * (1 - t) * x1 + 2 * (1 - t) * t * cx + t * t * x2;
+              const y = (1 - t) * (1 - t) * y1 + 2 * (1 - t) * t * cy + t * t * y2;
+              if (Math.abs(x - o.x) < o.w / 2 + 4 && Math.abs(y - o.y) < o.h / 2 + 4) {
+                score++;
+                break;
+              }
+            }
+          });
+          if (score < bestScore) {
+            bestScore = score;
+            best = bend;
+            if (score === 0) break;
+          }
+        }
+        return best;
+      };
+      const web = "";
+      const links = nodes
+        .flatMap((n) =>
+          n.hubs.map((id) => {
+            const bend = bendFor(hub[id][0], hub[id][1], n.x, n.y, n, id);
+            return `<path class="venn__link" stroke="${colourOf[id]}" d="${curve(hub[id][0], hub[id][1], n.x, n.y, bend)}"/>`;
+          })
         )
         .join("");
-    }
+
+      // Gradient text (same technique as the brand title) in each diagram colour
+      const looks = {
+        media: ["#0f766e", "#0b5e6b", "#0f9d8f", "#19b89c"],
+        it: ["#2563eb", "#0b3d91", "#0077c8", "#00b4b0"],
+        dev: ["#ea580c", "#e03c00", "#ff7a00", "#ff9d1a"],
+        "dev+media": ["#5fa80a", "#2f7d0a", "#5fb30a", "#8cc63f"],
+        "it+media": ["#0e95c2", "#0369a1", "#0ea5d9", "#2bc4e8"],
+        "dev+it": ["#8f3ff0", "#5b21b6", "#8f3ff0", "#d946ef"],
+        "dev+it+media": ["#d9267a", "#9d174d", "#d9267a", "#ff5a9a"],
+      };
+      const styleFor = (key) => {
+        const [edge, a, b, c] = looks[key];
+        return `background-color:transparent;background-image:linear-gradient(90deg,${a},${b} 55%,${c}),linear-gradient(#fff,#fff);-webkit-background-clip:text,border-box;background-clip:text,border-box;-webkit-text-fill-color:transparent;color:${b};border:2px solid ${edge}`;
+      };
+      const hubEls = [A, B, C]
+        .map(
+          (id) =>
+            `<div class="venn__hub" style="left:${px(hub[id][0])};top:${px(hub[id][1])};${styleFor(id)};border-width:3px">${labelOf(id)}</div>`
+        )
+        .join("");
+      const nodeEls = nodes
+        .map((n) => {
+          const sets_ = n.hubs.map(labelOf).join(" + ");
+          const key = n.hubs.length === 1 ? n.hubs[0] : [...n.hubs].sort().join("+");
+          return `<span class="tag venn__node" title="${sets_}" style="left:${px(n.x)};top:${px(n.y)};${styleFor(key)}">${n.name}</span>`;
+        })
+        .join("");
+
+      heroHighlightsEl.innerHTML = `
+                  <div style="height:${Math.ceil(H * k)}px">
+                  <div class="venn__stage${narrow ? " venn__stage--narrow" : ""}" style="width:${W}px;height:${H}px;transform:scale(${k});transform-origin:0 0" role="group" aria-label="Skills map linking ${sets.map((s) => s.label).join(", ")}">
+                    <svg class="venn__web" viewBox="0 0 ${W} ${H}" aria-hidden="true">${web}${links}</svg>
+                    ${hubEls}${nodeEls}
+                  </div>
+                  </div>`;
+    };
+
+                let lastW = 0;
+                const draw = () => {
+                  const w = Math.round(Math.min(1000, Math.max(300, heroHighlightsEl.clientWidth)));
+                  if (w === lastW) return;
+                  lastW = w;
+                  // Wide: the hand-arranged 806px layout, scaled up to fill the space. Narrow: auto layout.
+                  const wide = w >= 800;
+                  const k = wide ? Math.min(1.15, w / 806) : 1;
+                  renderMap(wide ? 806 : w, k, w, wide);
+                };
+                draw();
+                window.addEventListener("resize", () => requestAnimationFrame(draw));
+              }
     if (heroActionsEl) {
       const primaryBtns = "";
       const externalBtns = (portfolioData.contact || [])
@@ -163,23 +407,6 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTimeline("experience-list", portfolioData.experience, "role", "organization");
     renderTimeline("additional-experience-list", portfolioData.additionalExperience, "role", "organization");
     renderTimeline("education-list", portfolioData.education, "degree", "institution");
-
-    // Skills
-    const skillsGrid = document.getElementById("skills-grid");
-    if (skillsGrid && Array.isArray(portfolioData.skills)) {
-      skillsGrid.innerHTML = portfolioData.skills
-        .map(
-          (group) => `
-          <div class="skill-group">
-            <h3>${group.category}</h3>
-            <div class="tag-list">
-              ${(group.items || []).map((item) => `<span class="tag">${item}</span>`).join("")}
-            </div>
-          </div>
-        `
-        )
-        .join("");
-    }
 
     // About (Certifications, Musical Interests, Outdoor Activities)
     const aboutContent = document.getElementById("about-content");

@@ -8,8 +8,8 @@ const portfolioData = {
     heroBio: [
       "Hey there 👋! I'm Montague, a recent graduate from UWE Bristol with a passion for software development, cyber security, " +
       "audio 🔊 & information technology, and immersive media.",
-        " Growing up a guitarist/bassist, I developed an interest in music/audio and a variety of other arts. Those who know me here in the UK, " +
-        "know me as someone who frequents the cinema, the local music scene and the social community, " +
+        " Growing up a guitarist/bassist, I branched out to develop an interest in music/audio, history and a variety of other arts. Those who know me here in the UK, " +
+        " also know me as someone who frequents the cinema, the local music scene and the social community, " +
         "noting my recent voluntary commitments to CircleUp, a nationwide 20-39 year olds community, participating in " +
         "sports, arts and bringing people together.",
       "Having been to multiple countries and volunteering in Costa Rica" +
@@ -20,26 +20,6 @@ const portfolioData = {
         "As a huge fan of ADC (Audio Developer Conference), I actively follow the latest developments " +
         "in audio technology and enjoy connecting with fellow enthusiasts. " +
         "Volunteered online at ADC two years ago; volunteered again last year onsite; and am set to volunteer again this year, and annually forever after."
-    ],
-    highlights: [
-      {
-        label: "Software Development",
-        text: "Software development skills cover C++ (JUCE), DSP, Unity/C#, FMOD, and MaxMSP."
-      },
-      {
-        label: "Audio Engineering & Systems",
-        text: "Pro Tools, Reaper, Logic, Studio One, MuseScore, Fender Studio, Q-Lab, " +
-          "mixing desks, surround formats (5.1.2/7.1.4), and ambisonics."
-      },
-      {
-        label: "Collaboration & Tools",
-        text: "Agile environments, technical documentation (PDF/presentation), " +
-          "Discord, Zoom, Gather Town, Microsoft Office, and GDS standards."
-      },
-      {
-        label: "Certifications & Safety",
-        text: "BECTU Starting Safely certification (ScreenSkills) and Duke of Edinburgh (Bronze)."
-      }
     ],
     aboutBlocks: [
       {
@@ -347,32 +327,47 @@ const portfolioData = {
     }
   ],
 
-  skills: [
-    {
-      category: "Software Development",
-      items: ["C++", "JUCE", "DSP", "Unity / C#", "FMOD", "MaxMSP", "Blender (development of visual assets used in audio plugin interfaces)"]
-    },
-    {
-      category: "Web & Audiovisual",
-      items: ["JavaScript (Three.JS)", "HTML / CSS", "JSON", "Ruby"]
-    },
-    {
-      category: "Sound Engineering & Music Composition",
-      items: [
-        "Pro Tools", "Reaper", "Logic", "Fender Studio Pro (Formerly 'Studio One')", "MuseScore", "Cubase",
-        "Q-Lab", "5.1.2 / 7.1.4 Surround", "Ambisonics", "Foley & Field Recording", "Mixing Desks"
-      ]
-    },
-    {
-      category: "Collaboration & Operations",
-      items: [
-        "Agile Environments", "Technical Documentation",
-        "Discord / Zoom / Gather Town", "Microsoft Office",
-        "BECTU Starting Safely", "Duke of Edinburgh (Bronze)"
-      ]
-    }
-  ],
-
+  skills: {
+    sets: [
+      { id: "media", label: "Immersive Media & Technology" },
+      { id: "it", label: "Information Technology" },
+      { id: "dev", label: "Software/Hardware Development" }
+    ],
+    items: [
+      { name: "Pro Tools", in: ["media"] },
+      { name: "Reaper", in: ["media"] },
+      { name: "Logic", in: ["media"] },
+      { name: "Cubase", in: ["media"] },
+      { name: "Fender Studio Pro", in: ["media"] },
+      { name: "MuseScore", in: ["media"] },
+      { name: "Q-Lab", in: ["media"] },
+      { name: "5.1.2 / 7.1.4 Surround", in: ["media"] },
+      { name: "Ambisonics", in: ["media"] },
+      { name: "Foley & Field Recording", in: ["media"] },
+      { name: "Mixing Desks", in: ["media"] },
+      { name: "Gather Town", in: ["media", "it"] },
+      { name: "Unity", in: ["media", "dev"] },
+      { name: "FMOD", in: ["media", "dev"] },
+      { name: "MaxMSP", in: ["media", "dev"] },
+      { name: "JUCE", in: ["media", "dev"] },
+      { name: "DSP", in: ["media", "dev"] },
+      { name: "Blender", in: ["media", "dev"] },
+      { name: "Three.JS", in: ["media", "it", "dev"] },
+      { name: "HTML / CSS", in: ["it", "dev"] },
+      { name: "JavaScript", in: ["it", "dev"] },
+      { name: "JSON", in: ["it", "dev"] },
+      { name: "Ruby", in: ["it", "dev"] },
+      { name: "Agile Environments", in: ["it", "dev"] },
+      { name: "Technical Documentation", in: ["it"] },
+      { name: "Discord / Zoom", in: ["it"] },
+      { name: "Microsoft Office", in: ["it"] },
+      { name: "GDS Standards", in: ["it"] },
+      { name: "BECTU Starting Safely", in: ["it"] },
+      { name: "Duke of Edinburgh (Bronze)", in: ["it"] },
+      { name: "C++", in: ["dev"] },
+      { name: "C#", in: ["dev"] }
+    ]
+  },
   contact: [
     { label: "GitHub", url: "https://github.com/montywh", value: "@montywh", icon: "github" },
     {
