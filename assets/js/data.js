@@ -101,7 +101,6 @@ const portfolioData = {
         "achieved a 2:1 grade.",
       category: "Immersive Media and Technology",
       tags: ["Surround Sound", "Pro Tools", "Reaper", "Post-Production"],
-      github: "https://github.com/montywh"
     }
   ],
 
